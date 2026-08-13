@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Test Preparation - Educatia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- GLOBAL & UTILITIES --- */
+        :root {
+             --dark-navy: #3d575b;
+            --cyan: #558b8b;
+            --teal: #4b8e8d;
+            --text-gray: #2a3c41;
+            --bg-light: #fafbfc;
+            --yellow: #ffb100;
+            --theme-green: #097a32;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+             width: 1300px;
+            margin: 0 auto;
+            padding: 0 1%;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 50ms;
+        }
+
+        .delay-2 {
+            transition-delay: 100ms;
+        }
+
+        .delay-3 {
+            transition-delay: 150ms;
+        }
+
+        .delay-4 {
+            transition-delay: 200ms;
+        }
+
+        /* Section Headers */
+        .sec-title {
+            font-size: 2.5rem;
+            color: var(--dark-navy);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .sec-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: #272424;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--theme-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--theme-green);
+        }
+
+        .nav-links a i {
+            font-size: 0.7rem;
+            color: #aaa;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover i {
+            transform: rotate(180deg);
+            color: var(--theme-green);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transform-origin: top left;
+            transition: all 0.2s ease-out;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .dropdown-menu a {
+            color: #333 !important;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 400;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: var(--theme-green) !important;
+            padding-left: 28px;
+        }
+
+        .btn-outline-nav {
+            border: 1px solid var(--theme-green);
+            color: var(--theme-green);
+            padding: 10px 24px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .btn-outline-nav:hover {
+            background: var(--theme-green);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(9, 122, 50, 0.2);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            cursor: pointer;
+        }
+
+        /* --- INNER HERO SECTION --- */
+        .inner-hero {
+            position: relative;
+            height: 45vh;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 70px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .inner-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:rgba(100, 138, 143, 0.979);
+            z-index: 1;
+        }
+
+        .inner-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .inner-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .inner-hero p {
+            color: var(--yellow);
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- LANGUAGE CARDS GRID --- */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .course-card {
+            position: relative;
+            background: #fff;
+            padding: 35px 10px 5px 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: var(--teal);
+        }
+
+        .badge-popular {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--yellow);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .course-logo {
+            height: 70px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .course-logo img {
+            max-height: 100%;
+            max-width: 80%;
+            object-fit: contain;
+        }
+
+        .course-card h3 {
+            font-size: 1.3rem;
+            color: var(--dark-navy);
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .course-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .course-meta {
+            background: #f4f6f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .course-meta span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--dark-navy);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .course-meta span:last-child {
+            margin-bottom: 0;
+        }
+
+        .course-meta i {
+            color: var(--teal);
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        .course-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            flex-grow: 1;
+            /* Pushes the button to the bottom */
+        }
+
+        .course-features li {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .course-features li i {
+            color: var(--teal);
+            font-size: 1.1rem;
+        }
+
+        .btn-course {
+            background: var(--teal);
+            color: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            display: block;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-course:hover {
+            background: #17a57a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(32, 201, 151, 0.3);
+        }
+
+        /* --- SOLID GREEN CTA SECTION --- */
+        .cta-solid-green {
+            background-color: var(--teal);
+            color: #fff;
+            text-align: center;
+            padding: 80px 5%;
+        }
+
+        .cta-solid-green h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .cta-solid-green p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn-solid-yellow {
+            background: var(--yellow);
+            color: #000;
+            padding: 14px 40px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-solid-yellow:hover {
+            background: #e6a000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 177, 0, 0.3);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #f4f6f8 url('images/footer-bg-placeholder.jpg') no-repeat bottom center;
+            background-size: cover;
+            padding: 60px 5% 20px 5%;
+            border-top: 1px solid #eee;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-about p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--dark-navy);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #507672;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            color: var(--dark-navy);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #507672;
+            transform: translateX(5px);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+            color: var(--dark-navy);
+        }
+
+        .contact-item i {
+            color: var(--dark-navy);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+            padding-top: 25px;
+            border-top: 1px solid #dcdcdc;
+            position: relative;
+            z-index: 2;
+        }
+
+        .copyright strong {
+            color: var(--dark-navy);
+        }
+
+        /* Floating Bot */
+        .chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--yellow);
+            color: #000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .chatbot:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 177, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .btn-outline-nav {
+                display: none;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 20px 5%;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-links.active-menu {
+                display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+
+            .has-dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .inner-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-solid-green h2 {
+                font-size: 2rem;
+            }
+        }
+          .btn-teal {
+            background: #507672; color: #fff; padding: 12px 35px; border-radius: 4px; display: inline-block; font-weight: 500; transition: all 0.3s ease; position: relative; z-index: 2; box-shadow: 0 4px 10px rgba(80, 118, 114, 0.2);
+        }
+        .btn-teal:hover { background: #3a5a57; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(80, 118, 114, 0.4); }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo">
+        </a>
+
+        <div class="mobile-menu-toggle" id="mobile-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="has-dropdown"><a href="about.html">About <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                   <li><a href="about.html">Educatia</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="services.html">Services <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="services.html">Study Abroad</a></li>
+                    <li><a href="travel.html">Travel & tourism</a></li>
+                    <li><a href="language.html">Language Training</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="#">Destinations <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="services.html">Study Abroad</a></li>
+                    <li><a href="travel.html">Travel & tourism</a></li>
+                    <li><a href="language.html">Language Training</a></li>
+                </ul>
+            </li>
+           <li><a href="ielts.html">IELTS</a></li>
+            <li><a href="pte.html">PTE</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn-outline-nav">Book An Appointment</a>
+    </header>
+
+    <!-- INNER HERO SECTION -->
+    <section class="inner-hero" style="background-image: url('images/hero-bg-florence.jpg');">
+        <div class="inner-hero-overlay"></div>
+        <div class="inner-hero-content">
+            <h1>Language Test Preparation</h1>
+            <p>IELTS &bull; TOEFL &bull; PTE &bull; Duolingo</p>
+        </div>
+    </section>
+
+    <!-- PREPARE WITH CONFIDENCE (COURSES GRID) -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 class="sec-title reveal">Prepare with <strong>Confidence</strong></h2>
+            <p class="sec-subtitle reveal delay-1">Our language programs are designed to help you achieve your desired
+                score with expert instruction, practical strategies, and real exam simulations.</p>
+
+            <div class="course-grid reveal delay-2">
+
+                <!-- Card 1: IELTS -->
+                <div class="course-card">
+                    <div class="badge-popular">Popular</div>
+                    <div class="course-logo">
+                        <img src="images/ielts.png" alt="IELTS Logo">
+                    </div>
+                    <h3>IELTS Preparation</h3>
+                    <p class="course-desc">Achieve your required band score with expert guidance, real exam strategies,
+                        and regular mock tests.</p>
+                    <div class="course-meta">
+                        <span><i class="fa-regular fa-clock"></i> Duration: 6-8 Weeks</span>
+                        <span><i class="fa-solid fa-bullseye"></i> Target: Band 6.0 - 8.5</span>
+                    </div>
+                    <ul class="course-features">
+                        <li><i class="fa-solid fa-circle-check"></i> Mock Tests</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Speaking Practice</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Writing Feedback</li>
+                    </ul>
+                    <a href="contact.html" class="btn-course">Enroll Now</a>
+                </div>
+
+                <!-- Card 2: TOEFL -->
+                <div class="course-card">
+                    <div class="badge-popular">Popular</div>
+                    <div class="course-logo">
+                        <img src="images/toefl.jfif" alt="TOEFL Logo">
+                    </div>
+                    <h3>TOEFL Preparation</h3>
+                    <p class="course-desc">Master academic English skills with computer-based practice and proven
+                        test-taking techniques.</p>
+                    <div class="course-meta">
+                        <span><i class="fa-regular fa-clock"></i> Duration: 6 Weeks</span>
+                        <span><i class="fa-solid fa-bullseye"></i> Target: 80 - 110+</span>
+                    </div>
+                    <ul class="course-features">
+                        <li><i class="fa-solid fa-circle-check"></i> Computer-Based</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Academic Focus</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Test Strategies</li>
+                    </ul>
+                    <a href="contact.html" class="btn-course">Enroll Now</a>
+                </div>
+
+                <!-- Card 3: PTE -->
+                <div class="course-card">
+                    <div class="badge-popular">Popular</div>
+                    <div class="course-logo">
+                        <img src="images/pte.png" alt="PTE Logo">
+                    </div>
+                    <h3>PTE Academic</h3>
+                    <p class="course-desc">Fast-track your English test success with AI-based scoring practice and
+                        focused training. Ideal for study visas.</p>
+                    <div class="course-meta">
+                        <span><i class="fa-regular fa-clock"></i> Duration: 4-6 Weeks</span>
+                        <span><i class="fa-solid fa-bullseye"></i> Target: 55 - 80+</span>
+                    </div>
+                    <ul class="course-features">
+                        <li><i class="fa-solid fa-circle-check"></i> AI Scoring</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Quick Results</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Flexible Dates</li>
+                    </ul>
+                    <a href="contact.html" class="btn-course">Enroll Now</a>
+                </div>
+
+                <!-- Card 4: Duolingo -->
+                <div class="course-card">
+                    <div class="badge-popular">Popular</div>
+                    <div class="course-logo">
+                        <img src="images/duo.jfif" alt="Duolingo Logo">
+                    </div>
+                    <h3>Duolingo English Test</h3>
+                    <p class="course-desc">Prepare for the modern English test accepted by top universities worldwide.
+                        Ideal for quick results and affordable.</p>
+                    <div class="course-meta">
+                        <span><i class="fa-regular fa-clock"></i> Duration: 3-4 Weeks</span>
+                        <span><i class="fa-solid fa-bullseye"></i> Target: 95 - 130+</span>
+                    </div>
+                    <ul class="course-features">
+                        <li><i class="fa-solid fa-circle-check"></i> Online Test</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Fast Results</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Affordable</li>
+                    </ul>
+                    <a href="contact.html" class="btn-course">Enroll Now</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLID GREEN CTA BANNER -->
+    <section class="cta-solid-green reveal">
+        <div class="container text-center">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Join Educatia and take the first step toward studying abroad with confidence.</p>
+        <a href="contact.html" class="btn-teal" style="background-color: #ffffff; color: var(--dark-navy);">Book Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid reveal">
+                <div class="footer-about">
+                    <a href="index.html" class="logo" style="color: var(--dark-navy);">
+                        <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo"
+                            style="height: 50px; margin-bottom: 10px;">
+                    </a>
+                    <p>We don't just guide you to study abroad—we help you build a brighter, globally connected future.
+                        Trust us to turn your aspirations into achievements.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                    <li><a href="services.html#career">→ Career Counseling</a></li>
+                        <li><a href="services.html#selection">→ Selection of University</a></li>
+                        <li><a href="services.html#application">→ Application Handling</a></li>
+                        <li><a href="services.html#scholarships">→ Scholarships</a></li>
+                        <li><a href="services.html#interview">→ Interview Preparation</a></li>
+                        <li><a href="services.html#predeparture">→ Pre-Departure Briefing</a></li>
+                        <li><a href="language.html">→ Language Training</a></li>
+                        <li><a href="ielts.html">→ IELTS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-magnifying-glass-location"></i>
+                        <div>Ali Centre, Mumtaz Market, G.T. Road<br>Gujranwala, Punjab, Pakistan</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <div>+92 325 0000410</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <div>support@educatia.pk</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>Mon - Fri, 10 AM - 7 PM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright reveal">
+                &copy; Copyright 2026 <strong>Educatia Overseas Education Consultants</strong>. Developed With Love By
+                <strong>Technic Mentors</strong>.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Bot -->
+    <div class="chatbot"><i class="fa-solid fa-robot"></i></div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active-menu');
+        });
+
+        // Scroll Reveal Animations
+        document.addEventListener("DOMContentLoaded", function () {
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+            const revealOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => revealOnScroll.observe(el));
+        });
+    </script>
+</body>
+
+</html>

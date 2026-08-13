@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educatia - Overseas Education Consultants</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- GLOBAL & UTILITIES --- */
+        :root {
+            --dark-navy: #0d2a45;
+            --cyan: #00d2d3;
+            --teal: #20c997;
+            --text-gray: #666;
+            --bg-light: #fafbfc;
+            --yellow: #ffb100;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: 1300px;
+            margin: 0 auto;
+            padding: 0 1%;
+        }
+
+        /* Yahan gap kam kiya hai (100px se 60px) */
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        .bg-light {
+            background-color: #ffffff;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* --- SCROLL REVEAL ANIMATION CLASSES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 50ms;
+        }
+
+        .delay-2 {
+            transition-delay: 100ms;
+        }
+
+        .delay-3 {
+            transition-delay: 150ms;
+        }
+
+        .delay-4 {
+            transition-delay: 200ms;
+        }
+
+        .delay-5 {
+            transition-delay: 250ms;
+        }
+
+        .delay-6 {
+            transition-delay: 300ms;
+        }
+
+        /* Section Headers */
+        .sec-title {
+            font-size: 2.5rem;
+            color: var(--dark-navy);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .sec-title strong {
+            font-weight: 700;
+        }
+
+        .sec-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+        }
+
+        .text-highlight {
+            color: #388d74;
+            font-weight: 600;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 2%;
+            background-color: #ffffffda;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 9999;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: none;
+            padding: 10px 2%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: left;
+            gap: 1px;
+            color: #355a43;
+            z-index: 99999;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            max-width: 14vw;
+            object-fit: contain;
+            color: #355a43;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: #272424;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: #097a32;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #097a32;
+        }
+
+        .nav-links a i {
+            font-size: 0.7rem;
+            color: #aaa;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transform-origin: top left;
+            transition: all 0.2s ease-out;
+            list-style: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: var(--cyan);
+            padding-left: 28px;
+        }
+
+        /* --- BUTTONS WITH FLOWING HOVER --- */
+        .btn-outline {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #239f82;
+            color: #ffffff;
+            padding: 10px 24px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 400;
+            z-index: 1;
+            background-color: #3f848d;
+            transition: color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.4s ease;
+        }
+
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #507672;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
+        }
+
+        .btn-outline:hover {
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(32, 201, 151, 0.3);
+            border-color: #507672;
+        }
+
+        .btn-outline:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100vh;
+            min-height: 100%;
+            width: auto;
+            height: 90vh;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 700px;
+            margin-top: 50px;
+        }
+
+        /* Hero Load Animations (Faster) */
+        .hero-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .hero h1 {
+            font-size: 3.4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation-delay: 0.1s;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: #f1f1f1;
+            animation-delay: 0.2s;
+        }
+
+        .hero a {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- GRID LAYOUTS --- */
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+            display: grid;
+            gap: 30px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .service-card {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: transparent;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            background: #fff;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 210, 211, 0.2);
+        }
+
+        .icon-box {
+            background: var(--icon-bg);
+            color: var(--icon-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.5s ease;
+        }
+
+        .service-card:hover .icon-box {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 5px 15px var(--icon-color);
+        }
+
+        .service-info h3 {
+            font-size: 1.2rem;
+            color: var(--dark-navy);
+            margin-bottom: 8px;
+            font-weight: 600;
+            transition: color 0.1s ease;
+        }
+
+        .service-card:hover .service-info h3 {
+            color: var(--icon-color);
+        }
+
+        .service-info p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .read-more {
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
+
+        .read-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--cyan);
+        }
+
+        .service-card:hover .read-more i {
+            transform: translateX(8px);
+            color: var(--icon-color);
+        }
+
+        /* --- DESTINATIONS SECTION --- */
+        .destination-card {
+            background: #fff;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .dest-img {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            background-color: #ffffff;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .destination-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .destination-card:hover .dest-img {
+            transform: scale(1.15);
+        }
+
+        .destination-card:hover::before {
+            opacity: 1;
+        }
+
+        .dest-title {
+            position: relative;
+            background: #fff;
+            padding: 18px 0;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-navy);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .destination-card:hover .dest-title {
+            color: #fff;
+            background: #90c0bb;
+        }
+
+        .btn-teal {
+            background: #507672;
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(32, 201, 151, 0.2);
+        }
+
+        .btn-teal:hover {
+            background: #548677;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(32, 201, 151, 0.4);
+        }
+
+        /* --- ABOUT (EMPOWERING) SECTION --- */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 12px;
+            height: 500px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-right: 70%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about-img-wrapper:hover .about-img {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            color: var(--dark-navy);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .about-content p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* --- STEPS SECTION --- */
+        .step-card {
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+        }
+
+        .step-card:hover {
+            background: #fff;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transform: translateY(-10px);
+        }
+
+        .step-circle {
+            width: 120px;
+            height: 120px;
+            border: 4px solid #769f92;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3d534c;
+            background: #e9f7f3;
+            z-index: 2;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover .step-circle {
+            background: #548677;
+            color: #fff;
+            border-color: #3a5a57;
+            transform: scale(1.0);
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            color: var(--dark-navy);
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .step-card:hover h3 {
+            color: #507672;
+        }
+
+        .step-card p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* --- UNIVERSITIES --- */
+        .uni-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            align-items: center;
+        }
+
+        .uni-logo {
+            height: 90px;
+            background: #fff;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 0.8rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            padding: 15px;
+        }
+
+        .uni-logo img {
+            max-width: 100%;
+            max-height: 75%;
+            object-fit: contain;
+        }
+
+        .uni-logo:hover {
+            border-color: #507672;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px) scale(1.05);
+            filter: grayscale(0%);
+            opacity: 1;
+            color: var(--dark-navy);
+        }
+
+        /* --- STATS SECTION (CIRCULAR PROGRESS) --- */
+        .stats-section {
+            position: relative;
+            padding: 80px 0;
+            background-color: #0d2a45;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .stats-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(9, 45, 90, 0.5);
+            z-index: 1;
+        }
+
+        .stat-box {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(var(--color) var(--percent), #f0f0f0 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .inner-circle {
+            width: 115px;
+            height: 115px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .stat-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonial-container {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .testi-header {
+            flex: 1;
+        }
+
+        .testi-header h2 {
+            font-size: 2.2rem;
+            color: var(--dark-navy);
+            margin-bottom: 20px;
+        }
+
+        .nav-arrows {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .arrow-btn {
+            width: 45px;
+            height: 45px;
+            background: var(--dark-navy);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .arrow-btn:hover {
+            background: #507672;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(32, 201, 151, 0.4);
+        }
+/* --- TESTIMONIALS SLIDER CSS --- */
+        .testi-cards { 
+            flex: 2; 
+            display: flex; 
+            gap: 20px; 
+            overflow-x: hidden; /* Scrollbar hide karega */
+            scroll-behavior: smooth; /* Smooth sliding animation */
+            padding: 15px 5px; 
+        }
+        
+        .testi-card { 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            flex: 0 0 calc(50% - 10px); 
+            min-width: 250px; 
+            transition: all 0.4s ease; 
+            cursor: default; 
+            border: 1px solid #1a4a75; 
+        }
+
+        .testi-card:hover {
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); 
+            border-bottom-color: #507672;
+        }
+
+        /* Mobile par sirf 1 card show karne ke liye */
+        @media (max-width: 768px) {
+            .testi-card {
+                flex: 0 0 100%;
+            }
+        }
+        /* Profile Picture Container Style */
+        .testi-author-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .testi-avatar {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f0f0f0;
+        }
+
+        .testi-author h4 {
+            margin: 0 0 3px 0;
+            color: var(--dark-navy);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .testi-author span {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .testi-card .stars {
+            color: var(--yellow);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .testi-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-section {
+            background: linear-gradient(135deg, #557a83, #1a6475);
+            color: #fff;
+            text-align: center;
+            padding: 80px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #fff;
+            padding: 60px 5% 20px 5%;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--dark-navy);
+            font-size: 1.2rem;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .social-links a:hover {
+            background: #507672;
+            color: #fff;
+            transform: translateY(-5px) rotate(8deg);
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            color: var(--dark-navy);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #507672;
+            transform: translateX(8px);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(6px);
+            color: var(--dark-navy);
+        }
+
+        .contact-item i {
+            color: #507672;
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+            padding-top: 25px;
+            border-top: 1px solid #dcdcdc;
+            position: relative;
+            z-index: 2;
+        }
+
+        .copyright strong {
+            color: var(--dark-navy);
+        }
+
+        /* Floating Bot */
+        .chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--yellow);
+            color: #000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floatBot 3s infinite ease-in-out;
+        }
+
+        .chatbot:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(255, 177, 0, 0.5);
+            animation-play-state: paused;
+        }
+
+        @keyframes floatBot {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .fa-solid.fa-chevron-down {
+            color: #097a32;
+        }
+
+        /* Responsive basics */
+        @media (max-width: 992px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-section,
+            .testimonial-container {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-box {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: 20px;
+            }
+
+            .stat-box:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .step-circle {
+                width: 90px;
+                height: 90px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="#" class="logo">
+            <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img " alt="Educatia Logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li class="has-dropdown"><a href="about.html">About <i class="fa-solid fa-chevron-down"
+                        style="color: #0d4220;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html">Educatia</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="services.html">Services <i class="fa-solid fa-chevron-down"
+                        style="color: #0d4220;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="services.html">Study Abroad</a></li>
+                    <li><a href="travel.html">Travel & tourism</a></li>
+                    <li><a href="language.html">Language Training</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="travel.html">Destinations <i class="fa-solid fa-chevron-down"
+                        style="color: #0d4220;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="services.html">Study Abroad</a></li>
+                    <li><a href="travel.html">Travel & tourism</a></li>
+                    <li><a href="language.html">Language Training</a></li>
+                </ul>
+            </li>
+            <li><a href="ielts.html">IELTS</a></li>
+            <li><a href="pte.html">PTE</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn-outline">Book An Appointment</a>
+    </header>
+
+    <!-- HERO SECTION WITH VIDEO -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <img src="images/bbg.avif" alt="Hero Background" class="hero-video" style="height: 100vh;">
+
+        <div class="hero-content">
+            <h1 class="hero-animate" style='font-size: 3.4em;'>Follow Your Dreams<br>To Study Abroad</h1>
+            <p class="hero-animate">Educatia Consultants is one of the leading study abroad consultants.<br> Begin your
+                journey of studying
+                abroad with us and clear your<br> education queries. Book your student visa consultancy today!</p>
+            <a href="contact.html" class="btn-outline hero-animate">Book an appointment</a>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <!-- SERVICES -->
+    <section class="section-padding bg-light" style="position: relative; overflow: hidden; background-color: #ffffff;">
+        <video autoplay muted loop playsinline
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 950px; object-fit: cover; z-index: 0; opacity: 0.04; mix-blend-mode: multiply; filter: grayscale(100%);">
+            <source src="images/plane.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="container text-center" style="position: relative; z-index: 2;">
+            <h2 class="sec-title reveal">Expert Study Abroad Services for your<br><strong style="color: #406a7f;">Global
+                    Journey</strong></h2>
+            <p class="sec-subtitle reveal delay-1">Discover a range of tailored services designed to simplify your study
+                abroad
+                journey. From university selection to visa guidance, we're here to <span class="text-highlight">turn
+                    your dreams into reality.</span></p>
+
+            <div class="grid-2">
+                <!-- UPDATED READ MORE LINKS -->
+                <div class="service-card reveal delay-1" style="--icon-color:#00d2d3; --icon-bg:#e0f8fa;">
+                    <div class="icon-box"><i class="fa-solid fa-compass"></i></div>
+                    <div class="service-info text-left">
+                        <h3 style="text-align: left;">Career Counselling</h3>
+                        <p style="text-align: left;">Receive personalized guidance to explore your interests, identify
+                            your strengths, and choose the right career path tailored to your goals.</p>
+                        <!-- Updated Link -->
+                        <a href="services.html#career" class="read-more">Read More <i
+                                class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal delay-2" style="--icon-color:#20c997; --icon-bg:#e3f5ef;">
+                    <div class="icon-box"><i class="fa-solid fa-file-lines"></i></div>
+                    <div class="service-info">
+                        <h3 style="text-align: left;">Application Handling</h3>
+                        <p style="text-align: left;">Let us handle the complexities of your university application
+                            process, ensuring accuracy and timely submissions.</p>
+                        <!-- Updated Link -->
+                        <a href="services.html#application" class="read-more">Read More <i
+                                class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal delay-3" style="--icon-color:#6f42c1; --icon-bg:#ece5f7;">
+                    <div class="icon-box"><i class="fa-solid fa-building-columns"></i></div>
+                    <div class="service-info">
+                        <h3 style="text-align: left;">University Selection</h3>
+                        <p style="text-align: left;">We help you research and select the perfect university that aligns
+                            with your academic ambitions and preferred destination.</p>
+                        <!-- Updated Link -->
+                        <a href="services.html#selection" class="read-more">Read More <i
+                                class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal delay-4" style="--icon-color:#fd7e14; --icon-bg:#fdede1;">
+                    <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+                    <div class="service-info">
+                        <h3 style="text-align: left;">Interview Preparation</h3>
+                        <p style="text-align: left;">Prepare to excel in university or visa interviews with one-on-one
+                            coaching and detailed practice sessions.</p>
+                        <!-- Updated Link -->
+                        <a href="services.html#interview" class="read-more">Read More <i
+                                class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal delay-5" style="--icon-color:#d63384; --icon-bg:#f9e6ef;">
+                    <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="service-info">
+                        <h3 style="text-align: left;">Scholarships</h3>
+                        <p style="text-align: left;">Discover and apply for the best scholarships to make studying
+                            abroad more affordable, with our expert assistance.</p>
+                        <!-- Updated Link -->
+                        <a href="services.html#scholarships" class="read-more">Read More <i
+                                class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal delay-6" style="--icon-color:#0dcaf0; --icon-bg:#e0f5f8;">
+                    <div class="icon-box"><i class="fa-solid fa-plane-departure"></i></div>
+                    <div class="service-info">
+                        <h3 style="text-align: left;">Pre-Departure Briefing</h3>
+                        <p style="text-align: left;">Get ready for your study abroad journey with essential
+                            pre-departure tips, cultural insights, and travel guidance.</p>
+                        <!-- Updated Link -->
+                        <a href="services.html#predeparture" class="read-more">Read More <i
+                                class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESTINATIONS -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 class="sec-title reveal">Explore Your Path to <strong style="color: #406a7f;">Global
+                    Opportunities</strong></h2>
+            <br>
+            <div class="grid-3">
+                <div class="destination-card reveal delay-1">
+                    <div class="dest-img" style="background-image: url('images/uk.jfif');"></div>
+                    <div class="dest-title">UK</div>
+                </div>
+                <div class="destination-card reveal delay-2">
+                    <div class="dest-img" style="background-image: url('images/study-in-hungary-BhW4fvIB.avif');"></div>
+                    <div class="dest-title">Hungary</div>
+                </div>
+                <div class="destination-card reveal delay-3">
+                    <div class="dest-img" style="background-image: url('images/study-in-ireland-CMBxWEzS.avif');"></div>
+                    <div class="dest-title">Ireland</div>
+                </div>
+                <div class="destination-card reveal delay-4">
+                    <div class="dest-img" style="background-image: url('images/study-in-south-korea-CHA-FS3L.avif');">
+                    </div>
+                    <div class="dest-title">South Korea</div>
+                </div>
+                <div class="destination-card reveal delay-5">
+                    <div class="dest-img" style="background-image: url('images/study-in-cyprus-CZRjCC0K.avif');"></div>
+                    <div class="dest-title">Cyprus</div>
+                </div>
+                <div class="destination-card reveal delay-6">
+                    <div class="dest-img" style="background-image: url('images/study-in-france-Db5zHZsY.avif');"></div>
+                    <div class="dest-title">France</div>
+                </div>
+            </div>
+            <!-- Added Link -->
+            <a href="services.html" class="btn-teal reveal delay-2">View More</a>
+        </div>
+    </section>
+
+    <!-- ABOUT / EMPOWERING -->
+    <section class="section-padding bg-light">
+        <div class="container about-section">
+            <div class="about-img-wrapper reveal">
+                <div class="about-img"
+                    style="background-image: url('images/about-gif-new-J9HKOyjk.gif'); background-size: cover;"></div>
+            </div>
+            <div class="about-content reveal delay-2">
+                <h2>Empowering Dreams,<br><strong style="color: #406a7f;">Inspiring Global Success</strong></h2>
+                <p>At Educatia, we understand that studying abroad is more than just an academic decision—it's a
+                    life-changing experience. That's why our dedicated team works closely with you to create a
+                    customized pathway to success.</p>
+                <p>With years of expertise and a passion for helping students thrive, we simplify every step of your
+                    journey. From selecting the right university to pre-departure preparations, we're here to ensure
+                    your experience is smooth, fulfilling, and transformative.</p>
+                <a href="contact.html" class="btn-outline" style="color: #ffffff; border-color: #f7f6f6;">Schedule A
+                    Meeting</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEPS / PROCESS -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 class="sec-title reveal">Making Your Study Abroad Journey <strong
+                    style="color: #406a7f;">Seamless</strong></h2>
+            <br><br>
+            <div class="grid-4">
+                <div class="step-card reveal delay-1">
+                    <div class="step-circle">Step 1</div>
+                    <h3>Initial Consultation</h3>
+                    <p>We assess your goals, preferences, and eligibility to design a personalized application strategy.
+                    </p>
+                </div>
+                <div class="step-card reveal delay-2">
+                    <div class="step-circle">Step 2</div>
+                    <h3>Document Preparation</h3>
+                    <p>Our team helps you gather and organize all the required documents with precision and care.</p>
+                </div>
+                <div class="step-card reveal delay-3">
+                    <div class="step-circle">Step 3</div>
+                    <h3>Application Submission</h3>
+                    <p>We ensure your application is completed accurately and submitted to the chosen institutions on
+                        time.</p>
+                </div>
+                <div class="step-card reveal delay-4">
+                    <div class="step-circle">Step 4</div>
+                    <h3>Follow-Up and Updates</h3>
+                    <p>Stay informed with regular updates as we track your application's progress and next steps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIVERSITIES (Placeholders) -->
+    <section class="section-padding bg-light">
+        <div class="container text-center">
+            <h2 class="sec-title reveal">Top Universities <strong style="color: #406a7f;">Shaping Your Future</strong>
+            </h2>
+            <br>
+            <div class="uni-grid">
+                <div class="uni-logo reveal delay-1"><img style="height: 80%;width: 100vw;"
+                        src="images/birmingham-uni-CkGRIBZy.svg" alt="University Logo 1"></div>
+                <div class="uni-logo reveal delay-2"><img src="images/bristol-uni-Bjzt6oX1.svg" alt="University Logo 2">
+                </div>
+                <div class="uni-logo reveal delay-3"><img style="height: 50%;" src="images/cambridge_uni-WxLz14VO.svg"
+                        alt="University Logo 3"></div>
+                <div class="uni-logo reveal delay-4"><img src="images/glasgow-uni-black-BUgmL-ix.png"
+                        alt="University Logo 4"></div>
+                <div class="uni-logo reveal delay-1"><img src="images/glucestershire-uni-yAAh1LPr.svg"
+                        alt="University Logo 5"></div>
+                <div class="uni-logo reveal delay-2"><img src="images/hull-uni-black-BKE7alAU.png"
+                        alt="University Logo 6"></div>
+                <div class="uni-logo reveal delay-3"><img style="height: 55%;" src="images/lincoin-uni-d22TOxBA.png"
+                        alt="University Logo 7"></div>
+                <div class="uni-logo reveal delay-4"><img src="images/bangor-uni-OFUIw7sw.svg" alt="University Logo 8">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section" style="background-image: url('images/stats.jpg')">
+        <div class="stats-overlay"></div>
+        <div class="container grid-4">
+
+            <div class="stat-box reveal delay-1">
+                <div class="progress-circle" style="--percent: 95%; --color: #00b4b6;">
+                    <div class="inner-circle">95%</div>
+                </div>
+                <div class="stat-title">Student Success Rate</div>
+            </div>
+
+            <div class="stat-box reveal delay-2">
+                <div class="progress-circle" style="--percent: 90%; --color: #a448cf;">
+                    <div class="inner-circle">90%</div>
+                </div>
+                <div class="stat-title">Visa Approval Rate</div>
+            </div>
+
+            <div class="stat-box reveal delay-3">
+                <div class="progress-circle" style="--percent: 75%; --color: #f6931d;">
+                    <div class="inner-circle">75%</div>
+                </div>
+                <div class="stat-title">Countries Covered</div>
+            </div>
+
+            <div class="stat-box reveal delay-4">
+                <div class="progress-circle" style="--percent: 95%; --color: #10b981;">
+                    <div class="inner-circle">10</div>
+                </div>
+                <div class="stat-title">Years of Experience</div>
+            </div>
+
+        </div>
+    </section>
+
+   <!-- TESTIMONIALS -->
+    <section class="section-padding">
+        <div class="container testimonial-container">
+            <div class="testi-header reveal">
+                <span style="color: var(--text-gray); font-size: 0.9rem;">Testimonial</span>
+                <h2>Hear How Educatia<br>Transformed <strong style="color: #406a7f;">Lives</strong></h2>
+                <p style="color: var(--text-gray); font-size: 0.95rem; line-height: 1.6;">At Educatia, we've helped
+                    countless students turn their study abroad dreams into reality. See how we've empowered others to
+                    achieve global success.</p>
+                <div class="nav-arrows">
+                    <!-- IDs added here for JavaScript -->
+                    <button class="arrow-btn" id="prev-testi"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="arrow-btn" id="next-testi"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="testi-cards" id="testi-track">
+                <!-- Card 1 -->
+                <div class="testi-card reveal delay-2">
+                    <div class="testi-author-wrapper">
+                        <img src="images/fatima-6_a7sGyr.avif" alt="Profile Image" class="testi-avatar">
+                        <div class="testi-author">
+                            <h4>Fatima Sana</h4>
+                            <span>Student</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>Educatia made my dream of studying abroad a reality! Their expert guidance made the entire process smooth and stress-free.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testi-card reveal delay-3">
+                    <div class="testi-author-wrapper">
+                        <img src="images/c1-Dse2YqgA.avif" alt="Profile Image" class="testi-avatar">
+                        <div class="testi-author">
+                            <h4>Ahsan Ali</h4>
+                            <span>Student</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>From university selection to visa approval, Educatia provided exceptional support at every step. Highly recommended!</p>
+                </div>
+
+                <!-- Card 3 (New) -->
+                <div class="testi-card">
+                    <div class="testi-author-wrapper">
+                        <img src="images/pro1.jfif" alt="Profile Image" class="testi-avatar">
+                        <div class="testi-author">
+                            <h4>Zainab Khan</h4>
+                            <span>Student</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                    <p>The visa process was so daunting, but the team handled all my paperwork perfectly. Now I am studying in London!</p>
+                </div>
+
+                <!-- Card 4 (New) -->
+                <div class="testi-card">
+                    <div class="testi-author-wrapper">
+                        <img src="images/pro2.jfif" alt="Profile Image" class="testi-avatar">
+                        <div class="testi-author">
+                            <h4>Bilal Ahmed</h4>
+                            <span>Student</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>Best consultancy experience! They helped me secure a 50% scholarship for my master's degree in Australia.</p>
+                </div>
+
+                <!-- Card 5 (New) -->
+                <div class="testi-card">
+                    <div class="testi-author-wrapper">
+                        <img src="images/pro3.jfif" alt="Profile Image" class="testi-avatar">
+                        <div class="testi-author">
+                            <h4>Ayesha Tariq</h4>
+                            <span>Student</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>Their mock interviews boosted my confidence immensely. I cleared my university interview in the very first attempt.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-section reveal">
+        <h2>Take the Next Step Toward Your Study<br>Abroad Dream</h2>
+        <p>Get expert guidance and seamless support for every stage of your journey.<br>Let's make your global education
+            goals a reality—contact us today!</p>
+        <a href="contact.html" class="btn-teal reveal delay-2" style="background-color: #00b4b6;">Get in Touch</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid reveal">
+                <div class="footer-about">
+                    <a href="index.html" class="logo" style="color: var(--dark-navy);">
+                        <i class="fa-solid fa-graduation-cap logo-icon" style="color: #507672;"></i>
+                        <div class="logo-text"><span class="logo-title">Educatia</span></div>
+                    </a>
+                    <p>We don't just guide you to study abroad—we help you build a brighter, globally connected future.
+                        Trust us to turn your aspirations into achievements.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#career">→ Career Counseling</a></li>
+                        <li><a href="services.html#selection">→ Selection of University</a></li>
+                        <li><a href="services.html#application">→ Application Handling</a></li>
+                        <li><a href="services.html#scholarships">→ Scholarships</a></li>
+                        <li><a href="services.html#interview">→ Interview Preparation</a></li>
+                        <li><a href="services.html#predeparture">→ Pre-Departure Briefing</a></li>
+                        <li><a href="language.html">→ Language Training</a></li>
+                        <li><a href="ielts.html">→ IELTS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <div class="contact-item"><i class="fa-solid fa-location-dot"></i>
+                        <div>Ali Centre, Mumtaz Market, G.T. Road<br>Gujranwala, Punjab, Pakistan</div>
+                    </div>
+                    <div class="contact-item"><i class="fa-solid fa-phone"></i>
+                        <div>+92 325 0000410</div>
+                    </div>
+                    <div class="contact-item"><i class="fa-solid fa-envelope"></i>
+                        <div>support@educatia.pk</div>
+                    </div>
+                    <div class="contact-item"><i class="fa-solid fa-clock"></i>
+                        <div>Mon - Fri, 10 AM - 7 PM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; Copyright 2026 <strong>Educatia Overseas Education Consultants</strong>. Developed With Love By
+                <strong>Technic Mentors</strong>.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Bot -->
+    <div class="chatbot"><i class="fa-solid fa-robot"></i></div>
+
+    <!-- SCRIPTS FOR SCROLL EFFECTS AND REVEAL ANIMATIONS -->
+    <script>
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealOnScroll.observe(el);
+            });
+        });
+        // Testimonials Slider Logic
+        const testiTrack = document.getElementById('testi-track');
+        const prevTestiBtn = document.getElementById('prev-testi');
+        const nextTestiBtn = document.getElementById('next-testi');
+
+        if(testiTrack && prevTestiBtn && nextTestiBtn) {
+            nextTestiBtn.addEventListener('click', () => {
+                const cardWidth = testiTrack.querySelector('.testi-card').offsetWidth + 20;
+                testiTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            });
+
+            prevTestiBtn.addEventListener('click', () => {
+                const cardWidth = testiTrack.querySelector('.testi-card').offsetWidth + 20;
+                testiTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body>
+
+</html>

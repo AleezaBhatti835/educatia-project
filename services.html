@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Educatia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- GLOBAL & UTILITIES --- */
+        :root {
+            --dark-navy: #3d575b;
+            --cyan: #558b8b;
+            --teal: #1f6563;
+            --text-gray: #2a3c41;
+            --bg-light: #fafbfc;
+            --yellow: #ffb100;
+            --theme-green: #097a32;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: var(--bg-light);
+        }
+
+        a { text-decoration: none; }
+
+        .container {
+             width: 1300px;
+            margin: 0 auto;
+            padding: 0 1%;
+        }
+
+        .container-wide {
+            max-width: 96%;
+            margin: 0 auto;
+            padding: 0 2%;
+        }
+
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease-out;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 50ms; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .logo { display: flex; align-items: center; transition: transform 0.3s ease; }
+        .logo:hover { transform: scale(1.02); }
+        .logo-img { height: 50px; width: auto; max-width: 200px; object-fit: contain; }
+
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        .nav-links li { position: relative; }
+        .nav-links a {
+            color: #272424;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: 5px; left: 0; background-color: var(--theme-green); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--theme-green); }
+        .nav-links a i { font-size: 0.7rem; color: #aaa; transition: transform 0.3s ease; }
+        .nav-links a:hover i { transform: rotate(180deg); color: var(--theme-green); }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transform-origin: top left;
+            transition: all 0.2s ease-out;
+            list-style: none;
+            padding: 0; margin: 0;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .has-dropdown:hover .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0) scale(1);
+        }
+        .dropdown-menu a {
+            color: #333 !important;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 400;
+        }
+        .dropdown-menu a::after { display: none; }
+        .dropdown-menu a:hover { background: #f8f9fa; color: var(--theme-green) !important; padding-left: 28px; }
+
+        .btn-outline-nav {
+            border: 1px solid var(--theme-green);
+            color: var(--theme-green);
+            padding: 10px 24px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        .btn-outline-nav:hover {
+            background: var(--theme-green);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(9, 122, 50, 0.2);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            cursor: pointer;
+        }
+
+        /* --- INNER HERO SECTION --- */
+        .inner-hero {
+            position: relative;
+            height: 45vh;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 70px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .inner-hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(100, 138, 143, 0.979);
+            z-index: 1;
+        }
+
+        .inner-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .inner-hero h1 { font-size: 3.5rem; font-weight: 700; letter-spacing: 1px; transition: all 0.3s ease; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SERVICES LAYOUT (Sidebar + Content) --- */
+        .services-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        /* SIDEBAR */
+        .services-sidebar {
+            position: sticky;
+            top: 100px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            border: 1px solid #f0f0f0;
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            text-align: left;
+            padding: 15px 25px;
+            border: none;
+            background: transparent;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--dark-navy);
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn i { font-size: 1.1rem; color: var(--teal); transition: color 0.3s; }
+        
+        .tab-btn:hover { background: #f8fcfb; color: var(--teal); border-left-color: var(--teal); }
+
+        .tab-btn.active {
+            background: #eef9f7;
+            color: var(--teal);
+            border-left-color: var(--teal);
+            font-weight: 600;
+        }
+
+        /* CONTENT AREA */
+        .tab-content-container {
+            background: transparent;
+            min-height: 500px;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeInTab 0.5s ease-out forwards;
+        }
+
+        .tab-pane.active { display: block; }
+
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pane-title {
+            font-size: 2.2rem;
+            color: #2c4247;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .pane-desc { color: var(--text-gray); line-height: 1.7; font-size: 1rem; margin-bottom: 20px; }
+
+        .pane-subtitle {
+            font-size: 1.5rem;
+            color: var(--dark-navy);
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+
+        /* Custom Grids inside Tabs */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .service-feature-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .service-feature-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+            border-left-width: 0.5vw;
+            border-left-color: var(--teal); 
+        }
+        
+        .feature-icon-circle {
+            width: 35px; height: 35px;
+            background: var(--teal);
+            color: #fff;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .service-feature-card h4 { color: var(--dark-navy); font-size: 1.05rem; margin-bottom: 10px; font-weight: 600;}
+        .service-feature-card p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; margin: 0;}
+
+        /* Split Section for Tabs */
+        .split-section {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .split-text { flex: 1; }
+        .split-img { flex: 1; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .split-img img { width: 100%; height: auto; display: block; object-fit: cover;}
+
+        /* Bottom 3 Cards Grid */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        
+        .simple-card { 
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #eee;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .simple-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+            border-color: var(--teal); /* Hover border added here */
+        }
+        
+        .simple-card h4 { color: var(--dark-navy); margin-bottom: 10px; font-size: 1.05rem; font-weight: 600; }
+        .simple-card p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        .btn-outline-teal {
+            border: 1px solid var(--teal);
+            color: var(--teal);
+            padding: 10px 24px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: transparent;
+            margin-top: 15px;
+        }
+        .btn-outline-teal:hover {
+            background: var(--teal);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-section {
+            background: linear-gradient(135deg, #557a83, #1a6475); color: #fff;
+            text-align: center; padding: 80px 5%; position: relative; overflow: hidden;
+            margin-top: 60px;
+        }
+        .cta-section::after {
+            content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
+            background: rgba(255,255,255,0.05); border-radius: 50%;
+        }
+        .cta-section h2 { font-size: 2.2rem; margin-bottom: 15px; position: relative; z-index: 2; }
+        .cta-section p { font-size: 1rem; margin-bottom: 30px; opacity: 0.9; position: relative; z-index: 2; }
+        
+        .btn-teal {
+            background: #507672; color: #fff; padding: 12px 35px; border-radius: 4px; display: inline-block; font-weight: 500; transition: all 0.3s ease; position: relative; z-index: 2; box-shadow: 0 4px 10px rgba(80, 118, 114, 0.2);
+        }
+        .btn-teal:hover { background: #3a5a57; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(80, 118, 114, 0.4); }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: #f4f6f8 url('images/footer-bg-placeholder.jpg') no-repeat bottom center;
+            background-size: cover; padding: 60px 5% 20px 5%; border-top: 1px solid #eee; position: relative;
+        }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 40px; position: relative; z-index: 2; }
+        .footer-about p { font-size: 0.9rem; color: var(--text-gray); margin: 20px 0; line-height: 1.6; }
+        .social-links { display: flex; gap: 20px; }
+        .social-links a { color: var(--dark-navy); font-size: 1.3rem; transition: all 0.3s ease; }
+        .social-links a:hover { color: #507672; transform: translateY(-3px); }
+        .footer-links h3, .footer-contact h3 { color: var(--dark-navy); margin-bottom: 20px; font-size: 1.2rem; font-weight: 700; }
+        .footer-links ul { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: var(--text-gray); font-size: 0.95rem; transition: all 0.3s ease; display: inline-block; }
+        .footer-links a:hover { color: #507672; transform: translateX(5px); }
+        .contact-item { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.95rem; color: var(--text-gray); transition: transform 0.3s ease; }
+        .contact-item:hover { transform: translateX(5px); color: var(--dark-navy); }
+        .contact-item i { color: var(--dark-navy); font-size: 1.2rem; margin-top: 3px; }
+        
+        .copyright {
+            text-align: center; font-size: 0.9rem; color: #555; padding-top: 25px; border-top: 1px solid #dcdcdc; position: relative; z-index: 2;
+        }
+        .copyright strong { color: var(--dark-navy); }
+
+        /* Floating Bot */
+        .chatbot {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--yellow); color: #000; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .chatbot:hover { transform: scale(1.15) translateY(-5px); box-shadow: 0 8px 25px rgba(255, 177, 0, 0.4); }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .services-layout { grid-template-columns: 1fr; }
+            .services-sidebar { position: static; display: grid; grid-template-columns: repeat(2, 1fr); padding: 10px; }
+            .split-section { flex-direction: column; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle { display: block; }
+            .btn-outline-nav { display: none; }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 20px 5%;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+            }
+            .nav-links.active-menu { display: flex; }
+            
+            .dropdown-menu {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                box-shadow: none;
+                display: none; 
+                padding-left: 20px;
+            }
+            .has-dropdown:hover .dropdown-menu { display: block; }
+            
+            .services-sidebar { grid-template-columns: 1fr; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .inner-hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo">
+        </a>
+        
+        <div class="mobile-menu-toggle" id="mobile-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="has-dropdown"><a href="about.html">About <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html">Educatia</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="#" class="active">Services <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="services.html">Study Abroad</a></li>
+                    <li><a href="travel.html">Travel & tourism</a></li>
+                    <li><a href="language.html">Language Training</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="#">Destinations <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="services.html">Study Abroad</a></li>
+                    <li><a href="travel.html">Travel & tourism</a></li>
+                    <li><a href="language.html">Language Training</a></li>
+                </ul>
+            </li>
+            <li><a href="ielts.html">IELTS</a></li>
+            <li><a href="pte.html">PTE</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn-outline-nav">Book An Appointment</a>
+    </header>
+
+    <!-- INNER HERO SECTION -->
+    <section class="inner-hero" style="background-image: url('images/hero-bg-florence.jpg');">
+        <div class="inner-hero-overlay"></div>
+        <div class="inner-hero-content">
+            <h1 id="hero-title">Expert Services For Global Education</h1>
+        </div>
+    </section>
+
+    <!-- SERVICES LAYOUT (Sidebar + Dynamic Content) -->
+    <section class="section-padding">
+        <div class="container-wide services-layout">
+            
+            <!-- Left Sidebar Navigation -->
+            <div class="services-sidebar reveal">
+                <button class="tab-btn active" data-target="overview" data-title="Expert Services For Global Education">
+                    <i class="fa-solid fa-globe"></i> Overview
+                </button>
+                <button class="tab-btn" data-target="career" data-title="Career Counseling">
+                    <i class="fa-solid fa-briefcase"></i> Career Counseling
+                </button>
+                <button class="tab-btn" data-target="selection" data-title="Selection of University">
+                    <i class="fa-solid fa-building-columns"></i> Selection of University
+                </button>
+                <button class="tab-btn" data-target="scholarships" data-title="Scholarships">
+                    <i class="fa-solid fa-graduation-cap"></i> Scholarships
+                </button>
+                <button class="tab-btn" data-target="application" data-title="Application Handling">
+                    <i class="fa-solid fa-file-signature"></i> Application Handling
+                </button>
+                <button class="tab-btn" data-target="interview" data-title="Interview Preparation">
+                    <i class="fa-solid fa-comments"></i> Interview Preparation
+                </button>
+                <button class="tab-btn" data-target="predeparture" data-title="Pre-Departure Briefing">
+                    <i class="fa-solid fa-plane-departure"></i> Pre-Departure Briefing
+                </button>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="tab-content-container reveal delay-1">
+
+                <!-- 1. OVERVIEW PANE -->
+                <div id="overview" class="tab-pane active">
+                    <h2 class="pane-title">Comprehensive Solutions For Your<br><strong style="color: #4fa199;">Study Abroad</strong> Goals</h2>
+                    <p class="pane-desc">Navigating the path to studying abroad can be complex, but with Educatia Study Abroad Consultants, you are never alone. We offer a wide range of expert services designed to simplify your journey and help you achieve your academic dreams with confidence.</p>
+                    <p class="pane-desc">From personalized career counseling to application handling and interview preparation, we provide everything you need to ensure a seamless transition to your chosen destination. Our comprehensive approach ensures that you are guided at every critical step, making your study abroad experience as rewarding as possible.</p>
+                    
+                    <h3 class="pane-subtitle">How We Help You Succeed In Your Study Abroad Journey</h3>
+                    <p class="pane-desc">At Educatia, we believe in a comprehensive approach to studying abroad. Our services are designed to guide you through each step of the process, ensuring that you not only reach your destination but also thrive once you get there. Here is how we support you every step of the way:</p>
+                    
+                    <div class="overview-grid">
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-route"></i></div>
+                            <h4>Tailored Roadmap For Your Future</h4>
+                            <p>We understand your academic goals and craft a personalized plan to connect you with the best opportunities.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-school"></i></div>
+                            <h4>Expert Guidance In University Selection</h4>
+                            <p>Our consultants help you choose the perfect university based on your academic profile and preferences.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-piggy-bank"></i></div>
+                            <h4>Maximizing Financial Opportunities</h4>
+                            <p>We assist in exploring scholarships and financial aid to make your study abroad dreams more affordable.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-passport"></i></div>
+                            <h4>Application And Visa Management</h4>
+                            <p>From accurate applications to timely visa submissions, we ensure your transition is smooth and stress-free.</p>
+                        </div>
+                    </div>
+
+                    <div class="split-section">
+                        <div class="split-text">
+                            <h3 class="pane-subtitle" style="margin-top: 0;">Let's Make It Happen!</h3>
+                            <p class="pane-desc">Your academic journey deserves expert guidance. Whether you need help choosing the right university, securing scholarships, or navigating complex visa processes — we are here for you. Let's make your dream of studying abroad a reality, together.</p>
+                            <h4 style="color: var(--dark-navy); margin-bottom: 15px; font-weight: 600;">Don't wait. Let us help you start your journey today!</h4>
+                            <a href="#" class="btn-outline-teal">Get Expert Guidance &rarr;</a>
+                        </div>
+                        <div class="split-img">
+                            <img src="images/consu.jfif" alt="Students Consulting">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CAREER COUNSELING PANE -->
+                <div id="career" class="tab-pane">
+                    <h2 class="pane-title" >Career Counseling: Your Path to a Fulfilling Future</h2>
+                    <p class="pane-desc">Choosing the right career path is one of the most important decisions you'll make. At Educatia, our Career Counseling service is designed to help you discover your strengths, align your interests with your future goals, and chart the best course for your success. Our expert consultants provide personalized guidance that empowers you to make informed decisions, setting you up for success in both your academic and professional life.</p>
+                    
+                    <div class="split-section">
+                        <div class="split-text">
+                            <h3 class="pane-subtitle" style="margin-top: 0;">Why Career Counseling is Crucial for Your Future</h3>
+                            <p class="pane-desc" style="margin-bottom: 0;">Career counseling plays a vital role in helping you choose the right educational path. Whether you're unsure about your major or need direction in a competitive job market, our counselors work with you to assess your strengths, skills, and passions. We then guide you toward the best career options and academic opportunities that align with your personal and professional aspirations.</p>
+                        </div>
+                        <div class="split-img">
+                            <img src="images/career.jfif" alt="Career Counseling Session">
+                        </div>
+                    </div>
+
+                    <div class="overview-grid" style="margin-bottom: 50px;">
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Comprehensive Career Assessments</h4>
+                            <p>We help you discover your strengths, skills, and interests through proven assessment techniques, enabling you to choose a rewarding career path.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Tailored Academic Pathway Guidance</h4>
+                            <p>Get expert advice on selecting the right educational programs and majors that align with your future career goals.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Industry Insights and Career Exploration</h4>
+                            <p>Our counselors provide insights into various industries and professions to help you make an informed decision.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Skill Development Advice</h4>
+                            <p>Learn which technical and soft skills are crucial for your chosen path, along with strategies to build them.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="pane-subtitle text-center">Why Educatia For Career Counseling?</h3>
+                    <div class="grid-3">
+                        <div class="simple-card">
+                            <h4>Data-Driven Career Insights</h4>
+                            <p>We use market trends and employment data to help you select future-proof career paths that align with your goals.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Mentorship Beyond Counseling</h4>
+                            <p>Gain access to ongoing mentorship from industry professionals who provide practical advice and insights into your chosen field.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Global Perspective for Study and Work</h4>
+                            <p>Our counseling services are designed with a global outlook, helping you navigate international education and career opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. SELECTION OF UNIVERSITY PANE -->
+                <div id="selection" class="tab-pane">
+                    <h2 class="pane-title">Selection of University</h2>
+                    <p class="pane-desc">Choosing the right university is one of the most crucial decisions for your academic and professional journey. At Educatia, we understand that each student has unique goals and preferences. That's why we provide personalized guidance to help you find the best-fit university for your aspirations.</p>
+                    
+                    <div class="split-section">
+                        <div class="split-text">
+                            <h3 class="pane-subtitle" >Why Selecting the Right University Is Crucial For Your Future</h3>
+                            <p class="pane-desc" style="margin-bottom: 0;">Choosing the right university shapes not only your academic experience but also your professional journey. The right institution provides access to quality education, industry connections, and a network of peers and mentors who can significantly impact your career growth. Furthermore, it enhances your employability by offering programs aligned with evolving job market trends. Making an informed decision at this stage can pave the way for a successful and fulfilling future.</p>
+                        </div>
+                        <div class="split-img">
+                            <img src="images/universel.jfif" alt="University Selection">
+                        </div>
+                    </div>
+
+                    <div class="overview-grid">
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Tailored University Shortlisting</h4>
+                            <p>We curate a list of universities based on your academic background, career ambitions, and personal preferences.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Detailed Program Analysis</h4>
+                            <p>Get insights into the best programs offered by top universities that align with your academic strengths.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Comparative Evaluation</h4>
+                            <p>We help you compare universities based on location, ranking, tuition fees, and job prospects to make an informed choice.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Exclusive Admission Insights</h4>
+                            <p>Gain access to insider information on university admission trends and application tips for a competitive edge.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="pane-subtitle text-center">Why Choose Educatia for University Selection?</h3>
+                    <div class="grid-3">
+                        <div class="simple-card">
+                            <h4>Global Network of Partner Universities</h4>
+                            <p>With connections to prestigious institutions worldwide, we can provide access to top-ranking universities tailored to your needs.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Personalized Counseling Sessions</h4>
+                            <p>One-on-one sessions to assess your goals and match you with universities that align with your academic and career aspirations.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Comprehensive Application Support</h4>
+                            <p>Our experts assist in every aspect of your university applications, ensuring accuracy and professionalism for a strong submission.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. SCHOLARSHIPS PANE -->
+                <div id="scholarships" class="tab-pane">
+                    <h2 class="pane-title">Finance Your Education with Scholarships</h2>
+                    <p class="pane-desc">Higher education can be expensive, but financial constraints shouldn't hold you back from pursuing your dreams. At Educatia, we guide you in discovering and applying for the best scholarship opportunities, ensuring that you receive the support you deserve to make studying abroad a reality.</p>
+                    
+                    <div class="split-section">
+                        <div class="split-text">
+                            <h3 class="pane-subtitle" style="margin-top: 0;">Why Scholarships Matter for Your Educational Journey</h3>
+                            <p class="pane-desc" style="margin-bottom: 0;">Scholarships not only reduce the financial burden of tuition fees but also recognize and reward your academic achievements. They open doors to prestigious institutions and provide access to quality education without the stress of financial challenges. Securing a scholarship also enhances your resume, showcasing your ability to earn competitive opportunities based on merit or special qualifications.</p>
+                        </div>
+                        <div class="split-img">
+                            <img src="images/scholar.jfif" alt="Scholarships and Finance">
+                        </div>
+                    </div>
+
+                    <div class="overview-grid">
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Extensive Scholarship Database</h4>
+                            <p>Access information on a wide range of scholarships from various universities and external organizations.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Eligibility Assessment</h4>
+                            <p>We assess your academic profile and achievements to match you with the most suitable scholarships.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Application Guidance</h4>
+                            <p>Get expert advice on drafting compelling scholarship essays and assembling complete application packages.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Timely Alerts and Deadlines</h4>
+                            <p>Stay informed about important scholarship deadlines to ensure you never miss an opportunity.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="pane-subtitle text-center">Why Choose Educatia for Scholarship Assistance?</h3>
+                    <div class="grid-3">
+                        <div class="simple-card">
+                            <h4>Expert Knowledge on Global Scholarships</h4>
+                            <p>We stay updated on the latest scholarship programs to help you access financial aid options worldwide.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Tailored Scholarship Matching</h4>
+                            <p>Our counselors carefully match you with scholarships that best fit your academic background and personal circumstances.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Complete Application Support</h4>
+                            <p>From essay writing to document preparation, we assist you in crafting a strong and successful scholarship application.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. APPLICATION HANDLING PANE -->
+                <div id="application" class="tab-pane">
+                    <h2 class="pane-title">Let's Handle All Your Paper Work Labor</h2>
+                    <p class="pane-desc">Navigating the application process for universities abroad can be overwhelming. From gathering documents to meeting deadlines, every step requires precision and careful attention. At Educatia, we take the stress out of the process by handling your application professionally and efficiently, increasing your chances of acceptance.</p>
+                    
+                    <div class="split-section">
+                        <div class="split-text">
+                            <h3 class="pane-subtitle" style="margin-top: 0;">Why Application Handling Is Critical for Your Success</h3>
+                            <p class="pane-desc" style="margin-bottom: 0;">Submitting an accurate and well-organized application is essential for gaining admission to your desired institution. Errors or missing documents can lead to rejections or delays. Proper handling ensures your application stands out by meeting all requirements and showcasing your strengths. A seamless application process also keeps you on track with university timelines, allowing you to focus on preparing for your study abroad journey.</p>
+                        </div>
+                        <div class="split-img">
+                            <img src="images/applica.jfif" alt="Application Paperwork">
+                        </div>
+                    </div>
+
+                    <div class="overview-grid">
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Comprehensive Document Preparation</h4>
+                            <p>We ensure all your documents are properly compiled, verified, and ready for submission.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Application Form Assistance</h4>
+                            <p>Our experts guide you in filling out application forms accurately and strategically.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Tailored Submission Strategies</h4>
+                            <p>Submit your applications to the right universities at the right time to maximize your chances of acceptance.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Tracking and Follow-Up</h4>
+                            <p>We monitor your application status and liaise with university admissions offices when needed.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="pane-subtitle text-center">Why Choose Educatia for Application Handling?</h3>
+                    <div class="grid-3">
+                        <div class="simple-card">
+                            <h4>Accuracy and Attention to Detail</h4>
+                            <p>We double-check every detail to ensure your application is flawless and complete.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Experience with Diverse University Requirements</h4>
+                            <p>Our team is familiar with the specific requirements of universities worldwide.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>End-to-End Support</h4>
+                            <p>From form completion to submission tracking, we are with you every step of the way.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. INTERVIEW PANE -->
+                <div id="interview" class="tab-pane">
+                    <h2 class="pane-title">Ace Your Interview With Confidence</h2>
+                    <p class="pane-desc">Securing admission to your dream university often requires more than just a strong application. Many institutions conduct interviews to assess a candidate's readiness, communication skills, and overall fit. At Educatia, we provide comprehensive interview preparation to help you ace your university interviews confidently and effectively.</p>
+                    
+                    <div class="split-section">
+                        <div class="split-text">
+                            <h3 class="pane-subtitle" style="margin-top: 0;">Why Interview Preparation Is Essential for Your Success</h3>
+                            <p class="pane-desc" style="margin-bottom: 0;">University interviews are a chance to showcase your personality, passion, and potential beyond your academic achievements. Proper preparation ensures you can articulate your goals, respond thoughtfully to challenging questions, and leave a lasting positive impression. With expert guidance, you can overcome nervousness and present yourself as the ideal candidate for admission.</p>
+                        </div>
+                        <div class="split-img">
+                            <img src="images/inter.jfif" alt="Interview Preparation">
+                        </div>
+                    </div>
+
+                    <div class="overview-grid">
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Mock Interview Sessions</h4>
+                            <p>Practice real-life interview scenarios to build confidence and improve your responses.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Personalized Feedback</h4>
+                            <p>Receive constructive feedback to refine your answers, body language, and communication style.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Common Questions and Best Practices</h4>
+                            <p>Learn how to effectively answer frequently asked questions and tackle unexpected queries.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Building a Compelling Personal Narrative</h4>
+                            <p>Craft a story that highlights your achievements, goals, and motivations for studying abroad.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="pane-subtitle text-center">Why Choose Educatia for Interview Preparation?</h3>
+                    <div class="grid-3">
+                        <div class="simple-card">
+                            <h4>Expert Guidance from Industry Professionals</h4>
+                            <p>Our team understands what top universities are looking for in candidates.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Tailored Strategies for Different Institutions</h4>
+                            <p>We customize interview preparation based on the specific requirements of your target universities.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Focus on Confidence Building</h4>
+                            <p>We help you feel self-assured and ready to impress during your interviews.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. PRE-DEPARTURE PANE -->
+                <div id="predeparture" class="tab-pane">
+                    <h2 class="pane-title">Get The Final Touch Before You Fly</h2>
+                    <p class="pane-desc">Your journey doesn't end with getting admission—it's just the beginning. Moving to a new country for your education requires careful planning and preparation. Educatia's Pre-Departure Briefing ensures you're fully equipped to handle this exciting transition with ease and confidence.</p>
+                    
+                    <div class="split-section">
+                        <div class="split-text">
+                            <h3 class="pane-subtitle" style="margin-top: 0;">Why a Pre-Departure Briefing Is Crucial for a Smooth Transition</h3>
+                            <p class="pane-desc" style="margin-bottom: 0;">Relocating to a foreign country presents unique challenges, from cultural differences to understanding local regulations. A well-structured pre-departure session helps you navigate these challenges effectively. With valuable insights and practical tips, you can settle into your new environment without unnecessary stress.</p>
+                        </div>
+                        <div class="split-img">
+                            <img src="images/departure.jfif" alt="Pre Departure Student at Airport">
+                        </div>
+                    </div>
+
+                    <div class="overview-grid">
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Travel and Packing Guidelines</h4>
+                            <p>Essential tips on what to pack and how to manage your travel arrangements efficiently.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Understanding Local Customs and Culture</h4>
+                            <p>Insights into cultural norms and etiquette to help you adapt seamlessly to your new environment.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Accommodation and Transportation Guidance</h4>
+                            <p>Tips for finding safe housing and navigating the local transport system.</p>
+                        </div>
+                        <div class="service-feature-card">
+                            <div class="feature-icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4>Essential Document Checklist</h4>
+                            <p>Ensure you have all the necessary documents for a hassle-free journey and arrival.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="pane-subtitle text-center">Why Choose Educatia for Pre-Departure Briefing?</h3>
+                    <div class="grid-3">
+                        <div class="simple-card">
+                            <h4>Comprehensive and Tailored Guidance</h4>
+                            <p>We provide personalized advice based on your study destination and individual needs.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Experienced Advisors with Global Expertise</h4>
+                            <p>Our team has in-depth knowledge of various countries and their education systems.</p>
+                        </div>
+                        <div class="simple-card">
+                            <h4>Practical Tips for Real-Life Situations</h4>
+                            <p>From currency exchange to emergency contacts, we cover the details that matter.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-section reveal">
+        <h2>Take the Next Step Toward Your Study<br>Abroad Dream</h2>
+        <p>Get expert guidance and seamless support for every stage of your journey.<br>Let's make your global education goals a reality—contact us today!</p>
+        <a href="contact.html" class="btn-teal" style="background-color: #ffffff; color: var(--dark-navy);">Get in touch</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid reveal">
+                <div class="footer-about">
+                    <a href="index.html" class="logo" style="color: var(--dark-navy);">
+                        <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo" style="height: 50px; margin-bottom: 10px;">
+                    </a>
+                    <p>We don't just guide you to study abroad—we help you build a brighter, globally connected future. Trust us to turn your aspirations into achievements.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#career">→ Career Counseling</a></li>
+                        <li><a href="services.html#selection">→ Selection of University</a></li>
+                        <li><a href="services.html#application">→ Application Handling</a></li>
+                        <li><a href="services.html#scholarships">→ Scholarships</a></li>
+                        <li><a href="services.html#interview">→ Interview Preparation</a></li>
+                        <li><a href="services.html#predeparture">→ Pre-Departure Briefing</a></li>
+                        <li><a href="language.html">→ Language Training</a></li>
+                        <li><a href="ielts.html">→ IELTS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-magnifying-glass-location"></i>
+                        <div>Ali Centre, Mumtaz Market, G.T. Road<br>Gujranwala, Punjab, Pakistan</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <div>+92 325 0000410</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <div>support@educatia.pk</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>Mon - Fri, 10 AM - 7 PM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright reveal">
+                &copy; Copyright 2026 <strong>Educatia Overseas Education Consultants</strong>. Developed With Love By <strong>Technic Mentors</strong>.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Bot -->
+    <div class="chatbot"><i class="fa-solid fa-robot"></i></div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active-menu');
+        });
+
+        // Tab Switching Logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const heroTitle = document.getElementById('hero-title');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // Show matching content pane
+                const targetId = btn.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+
+                // Change Hero Title
+                const newTitle = btn.getAttribute('data-title');
+                heroTitle.textContent = newTitle;
+                
+                // Optional: Scroll to top of content on mobile
+                if(window.innerWidth < 992) {
+                    document.querySelector('.tab-content-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll Reveal Animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, revealOptions);
+            revealElements.forEach(el => revealOnScroll.observe(el));
+        });
+        // --- ADD THIS CODE TO services.html ---
+        // Check if URL has a hash tag (e.g., #career) on page load
+        window.addEventListener('load', () => {
+            const hash = window.location.hash;
+            if (hash) {
+                // Remove the '#' to get the target ID
+                const targetId = hash.substring(1);
+                const targetBtn = document.querySelector(`.tab-btn[data-target="${targetId}"]`);
+                
+                if (targetBtn) {
+                    // Trigger a click on that specific tab button
+                    targetBtn.click();
+                    
+                    // Small delay to let the layout settle, then scroll to the container
+                    setTimeout(() => {
+                        document.querySelector('.services-layout').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
