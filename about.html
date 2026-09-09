@@ -10,7 +10,6 @@
         rel="stylesheet">
 
     <style>
-        /* --- GLOBAL & UTILITIES --- */
         :root {
             --dark-navy: #0d2a45;
             --cyan: #00d2d3;
@@ -39,9 +38,10 @@
         }
 
         .container {
-             width: 1300px;
+            max-width: 1300px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 1%;
+            padding: 0 20px;
         }
 
         .section-padding {
@@ -56,7 +56,6 @@
             text-align: center;
         }
 
-        /* --- SCROLL REVEAL ANIMATIONS --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -68,25 +67,14 @@
             transform: translateY(0);
         }
 
-        .delay-1 {
-            transition-delay: 50ms;
-        }
-
-        .delay-2 {
-            transition-delay: 100ms;
-        }
-
-        .delay-3 {
-            transition-delay: 150ms;
-        }
-
-        .delay-4 {
-            transition-delay: 200ms;
-        }
+        .delay-1 { transition-delay: 50ms; }
+        .delay-2 { transition-delay: 100ms; }
+        .delay-3 { transition-delay: 150ms; }
+        .delay-4 { transition-delay: 200ms; }
 
         /* Section Headers */
         .sec-title {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             color: var(--dark-navy);
             margin-bottom: 15px;
             font-weight: 400;
@@ -102,6 +90,7 @@
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto 50px auto;
+            padding: 0 15px;
         }
 
         /* --- NAVBAR --- */
@@ -112,7 +101,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 2%;
+            padding: 15px 5%;
             background-color: #ffffff;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             z-index: 9999;
@@ -129,9 +118,9 @@
         }
 
         .logo-img {
-            height: 50px;
+            height: 40px;
             width: auto;
-            max-width: 14vw;
+            max-width: 150px;
             object-fit: contain;
         }
 
@@ -141,6 +130,7 @@
             gap: 25px;
             margin: 0;
             padding: 0;
+            align-items: center;
         }
 
         .nav-links li {
@@ -234,6 +224,15 @@
             padding-left: 28px;
         }
 
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-navy);
+            z-index: 100000;
+        }
+
         .btn-outline-nav {
             border: 1px solid #097a32;
             color: #097a32;
@@ -255,8 +254,8 @@
         /* --- INNER HERO SECTION --- */
         .inner-hero {
             position: relative;
-            height: 45vh;
-            min-height: 350px;
+            height: 40vh;
+            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -285,7 +284,7 @@
         }
 
         .inner-hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -295,7 +294,6 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -326,12 +324,13 @@
         .about-img-wrapper {
             flex: 1;
             position: relative;
+            width: 100%;
         }
 
         .about-img {
             width: 100%;
             border-radius: 12px;
-            height: 500px;
+            height: 400px;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             background-size: cover;
@@ -348,7 +347,7 @@
         }
 
         .about-content h2 {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.2rem);
             color: var(--dark-navy);
             margin-bottom: 20px;
             line-height: 1.2;
@@ -362,24 +361,45 @@
         }
 
         .btn-outline {
-            border: 1px solid #333;
-            color: #333;
-            padding: 12px 30px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #239f82;
+            color: #ffffff;
+            padding: 10px 24px;
             border-radius: 4px;
             display: inline-block;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            background: transparent;
+            font-weight: 400;
+            z-index: 1;
+            background-color: #3f848d;
+            transition: color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.4s ease;
+            text-align: center;
+        }
+
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #507672;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
         }
 
         .btn-outline:hover {
-            background: #333;
             color: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(32, 201, 151, 0.3);
+            border-color: #507672;
         }
 
-        /* --- VISION TO REALITY SECTION --- */
+        .btn-outline:hover::before {
+            transform: scaleX(1);
+        }
+
         .vision-list {
             display: flex;
             flex-direction: column;
@@ -411,7 +431,6 @@
             line-height: 1.6;
         }
 
-        /* --- PRINCIPLES SECTION --- */
         .principles-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -488,45 +507,6 @@
             transition: all 0.3s ease;
         }
 
-        .btn-outline {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #239f82;
-            color: #ffffff;
-            padding: 10px 24px;
-            border-radius: 4px;
-            display: inline-block;
-            font-weight: 400;
-            z-index: 1;
-            background-color: #3f848d;
-            transition: color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.4s ease;
-        }
-
-        .btn-outline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #507672;
-            z-index: -1;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease-out;
-        }
-
-        .btn-outline:hover {
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(32, 201, 151, 0.3);
-            border-color: #507672;
-        }
-
-        .btn-outline:hover::before {
-            transform: scaleX(1);
-        }
-
         .accordion-header h4 {
             font-size: 1.05rem;
             font-weight: 500;
@@ -543,7 +523,6 @@
             max-height: 0;
             padding: 0 25px;
             background: #f8faff;
-            /* Light pale background on open */
             opacity: 0;
             transition: all 0.3s ease;
         }
@@ -590,6 +569,7 @@
             transition: all 0.3s ease;
             margin-top: 20px;
             box-shadow: 0 4px 10px rgba(80, 118, 114, 0.2);
+            text-align: center;
         }
 
         .btn-teal:hover {
@@ -614,7 +594,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(9, 45, 90, 0.5);
+            background: rgba(9, 45, 90, 0.85);
             z-index: 1;
         }
 
@@ -677,7 +657,7 @@
         }
 
         .testi-header h2 {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.2rem);
             color: var(--dark-navy);
             margin-bottom: 20px;
         }
@@ -710,8 +690,14 @@
             flex: 2;
             display: flex;
             gap: 20px;
-            overflow: hidden;
-            padding: 15px 0;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 15px 5px;
+            scrollbar-width: none;
+        }
+
+        .testi-cards::-webkit-scrollbar {
+            display: none;
         }
 
         .testi-card {
@@ -719,8 +705,8 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            flex: 1;
-            min-width: 250px;
+            flex: 0 0 calc(50% - 10px);
+            min-width: 280px;
             transition: all 0.4s ease;
             cursor: default;
             border: 1px solid #1a4a75;
@@ -739,8 +725,8 @@
         }
 
         .testi-avatar {
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #f0f0f0;
@@ -749,19 +735,19 @@
         .testi-author h4 {
             margin: 0 0 3px 0;
             color: var(--dark-navy);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
         }
 
         .testi-author span {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-gray);
         }
 
         .testi-card .stars {
             color: var(--yellow);
             margin-bottom: 15px;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .testi-card p {
@@ -775,24 +761,13 @@
             background: linear-gradient(135deg, #557a83, #1a6475);
             color: #fff;
             text-align: center;
-            padding: 80px 5%;
+            padding: 80px 20px;
             position: relative;
             overflow: hidden;
         }
 
-        .cta-section::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-        }
-
         .cta-section h2 {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.2rem);
             margin-bottom: 15px;
             position: relative;
             z-index: 2;
@@ -804,30 +779,14 @@
             opacity: 0.9;
             position: relative;
             z-index: 2;
-        }
-
-        .btn-green-solid {
-            background: #507672;
-            color: #fff;
-            padding: 12px 35px;
-            border-radius: 4px;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .btn-green-solid:hover {
-            background: #3a5a57;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(80, 118, 114, 0.3);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* --- FOOTER --- */
         .footer {
-            background: #f4f6f8 url('images/footer-bg-placeholder.jpg') no-repeat bottom center;
-            background-size: cover;
+            background: #f4f6f8;
             padding: 60px 5% 20px 5%;
             border-top: 1px solid #eee;
             position: relative;
@@ -856,12 +815,20 @@
 
         .social-links a {
             color: var(--dark-navy);
-            font-size: 1.3rem;
+            font-size: 1.1rem;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #507672;
+            background: #507672;
+            color: #fff;
             transform: translateY(-3px);
         }
 
@@ -911,13 +878,13 @@
 
         .contact-item i {
             color: var(--dark-navy);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-top: 3px;
         }
 
         .copyright {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555;
             padding-top: 25px;
             border-top: 1px solid #dcdcdc;
@@ -936,13 +903,13 @@
             right: 30px;
             background: var(--yellow);
             color: #000;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             cursor: pointer;
@@ -954,16 +921,18 @@
             box-shadow: 0 8px 25px rgba(255, 177, 0, 0.4);
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
+        /* ================= RESPONSIVE MEDIA QUERIES ================= */
 
+        @media (max-width: 1024px) {
+            .principles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
             .grid-4,
             .grid-2 {
                 grid-template-columns: 1fr;
-            }
-
-            .principles-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
 
             .about-section,
@@ -973,16 +942,61 @@
 
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background-color: #ffffff;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding-left: 50px;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                transition: right 0.4s ease-in-out;
+                z-index: 99999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: relative;
+                top: 0;
+                box-shadow: none;
+                background: #f8f9fa;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                transform: none !important;
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .has-dropdown.open .dropdown-menu {
+                max-height: 300px;
+            }
+
+            .navbar .btn-outline-nav {
+                display: none;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .principles-grid {
                 grid-template-columns: 1fr;
+            }
+            .testi-card {
+                flex: 0 0 100%;
             }
         }
     </style>
@@ -990,13 +1004,12 @@
 
 <body>
 
-    <!-- NAVBAR (Fixed, White Background) -->
     <header class="navbar">
         <a href="index.html" class="logo">
             <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo">
         </a>
 
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li class="has-dropdown"><a href="#" class="active">About <i class="fa-solid fa-chevron-down"></i></a>
                 <ul class="dropdown-menu">
@@ -1022,10 +1035,15 @@
             <li><a href="pte.html">PTE</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <a href="#" class="btn-outline-nav">Book An Appointment</a>
+
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="contact.html" class="btn-outline-nav">Book An Appointment</a>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
     </header>
 
-    <!-- INNER HERO SECTION -->
     <section class="inner-hero" style="background-image: url('images/hero-bg-florence.jpg');">
         <div class="inner-hero-overlay"></div>
         <div class="inner-hero-content">
@@ -1033,37 +1051,26 @@
         </div>
     </section>
 
-    <!-- ABOUT / EMPOWERING (From Home Page) -->
     <section class="section-padding bg-light">
         <div class="container about-section">
             <div class="about-img-wrapper reveal">
-                <div class="about-img"
-                    style="background-image: url('images/about-gif-new-J9HKOyjk.gif'); background-size: cover;"></div>
+                <div class="about-img" style="background-image: url('images/about-gif-new-J9HKOyjk.gif');"></div>
             </div>
             <div class="about-content reveal delay-2">
                 <h2>Empowering Dreams,<br><strong style="color: #406a7f;">Inspiring Global Success</strong></h2>
-                <p>At Educatia, we understand that studying abroad is more than just an academic decision—it's a
-                    life-changing experience. That's why our dedicated team works closely with you to create a
-                    customized pathway to success.</p>
-                <p>With years of expertise and a passion for helping students thrive, we simplify every step of your
-                    journey. From selecting the right university to pre-departure preparations, we're here to ensure
-                    your experience is smooth, fulfilling, and transformative.</p>
-                <a href="contact.html" class="btn-outline" style="color: #ffffff; border-color: #f7f6f6;">Schedule A
-                    Meeting</a>
+                <p>At Educatia, we understand that studying abroad is more than just an academic decision—it's a life-changing experience. That's why our dedicated team works closely with you to create a customized pathway to success.</p>
+                <p>With years of expertise and a passion for helping students thrive, we simplify every step of your journey. From selecting the right university to pre-departure preparations, we're here to ensure your experience is smooth, fulfilling, and transformative.</p>
+                <a href="contact.html" class="btn-outline" style="color: #ffffff; border-color: #507672;">Schedule A Meeting</a>
             </div>
         </div>
     </section>
 
-    <!-- FROM VISION TO REALITY -->
     <section class="section-padding">
         <div class="container grid-2">
             <div class="reveal">
                 <h2>From Vision to Reality, Our Journey</h2>
-                <p style="color: var(--text-gray); line-height: 1.6; margin-top: 15px;">Educatia was founded with a
-                    passion for guiding students toward global academic success. With expert counseling and personalized
-                    support, we turn aspirations into reality, making study abroad journeys seamless and rewarding.</p>
-                <!-- Replace with student vector graphic from your files -->
-                <img src="images/visa.jpg" alt="Students Journey" style="width: 100%; height: 35vh;margin-top: 20px;">
+                <p style="color: var(--text-gray); line-height: 1.6; margin-top: 15px;">Educatia was founded with a passion for guiding students toward global academic success. With expert counseling and personalized support, we turn aspirations into reality, making study abroad journeys seamless and rewarding.</p>
+                <img src="images/visa.jpg" alt="Students Journey" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-top: 20px;">
             </div>
 
             <div class="vision-list reveal delay-2">
@@ -1071,40 +1078,33 @@
                     <i class="fa-solid fa-bullseye vision-icon" style="color: #0dcaf0;"></i>
                     <div class="vision-text">
                         <h4>Our Mission</h4>
-                        <p>We strive to empower students with expert guidance and resources, making their study abroad
-                            journey seamless and rewarding.</p>
+                        <p>We strive to empower students with expert guidance and resources, making their study abroad journey seamless and rewarding.</p>
                     </div>
                 </div>
                 <div class="vision-item">
                     <i class="fa-solid fa-eye vision-icon" style="color: #20c997;"></i>
                     <div class="vision-text">
                         <h4>Our Vision</h4>
-                        <p>To be the leading study abroad consultancy, shaping a future where every student can achieve
-                            their global academic aspirations.</p>
+                        <p>To be the leading study abroad consultancy, shaping a future where every student can achieve their global academic aspirations.</p>
                     </div>
                 </div>
                 <div class="vision-item">
                     <i class="fa-solid fa-graduation-cap vision-icon" style="color: #6f42c1;"></i>
                     <div class="vision-text">
                         <h4>Students Success</h4>
-                        <p>Our focus is on equipping students with the right opportunities, resources, and guidance to
-                            help them thrive in their academic journey.</p>
+                        <p>Our focus is on equipping students with the right opportunities, resources, and guidance to help them thrive in their academic journey.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRINCIPLES THAT DRIVE US -->
     <section class="section-padding bg-light">
         <div class="container text-center">
             <h2 class="sec-title reveal">Principles That Drive Us</h2>
-            <p class="sec-subtitle reveal delay-1">Our core values shape everything we do. We are dedicated to offering
-                a transparent, supportive, and personalized experience to help you succeed in your study abroad goals.
-            </p>
+            <p class="sec-subtitle reveal delay-1">Our core values shape everything we do. We are dedicated to offering a transparent, supportive, and personalized experience to help you succeed in your study abroad goals.</p>
 
             <div class="principles-grid">
-                <!-- Row 1 -->
                 <div class="principle-card reveal delay-1" style="--p-color: #3e5b61;">
                     <i class="fa-solid fa-handshake principle-icon"></i>
                     <h3>Integrity</h3>
@@ -1113,8 +1113,7 @@
                 <div class="principle-card reveal delay-2" style="--p-color: #374356;">
                     <i class="fa-solid fa-lightbulb principle-icon"></i>
                     <h3>Expertise</h3>
-                    <p>With years of experience, our team guides you toward the best educational opportunities
-                        available.</p>
+                    <p>With years of experience, our team guides you toward the best educational opportunities available.</p>
                 </div>
                 <div class="principle-card reveal delay-3" style="--p-color: #433956;">
                     <i class="fa-solid fa-user-check principle-icon"></i>
@@ -1124,10 +1123,8 @@
                 <div class="principle-card reveal delay-4" style="--p-color: #394753;">
                     <i class="fa-solid fa-hand-holding-heart principle-icon"></i>
                     <h3>Commitment</h3>
-                    <p>We are committed to your success, providing continuous support throughout your entire journey.
-                    </p>
+                    <p>We are committed to your success, providing continuous support throughout your entire journey.</p>
                 </div>
-                <!-- Row 2 -->
                 <div class="principle-card reveal delay-1" style="--p-color: #555241;">
                     <i class="fa-solid fa-magnifying-glass principle-icon"></i>
                     <h3>Transparency</h3>
@@ -1136,8 +1133,7 @@
                 <div class="principle-card reveal delay-2" style="--p-color: #866c57;">
                     <i class="fa-solid fa-users principle-icon"></i>
                     <h3>Collaboration</h3>
-                    <p>We collaborate with students, families, and universities to ensure the best possible outcomes.
-                    </p>
+                    <p>We collaborate with students, families, and universities to ensure the best possible outcomes.</p>
                 </div>
                 <div class="principle-card reveal delay-3" style="--p-color: #475263;">
                     <i class="fa-solid fa-trophy principle-icon"></i>
@@ -1147,34 +1143,22 @@
                 <div class="principle-card reveal delay-4" style="--p-color: #a382a1;">
                     <i class="fa-solid fa-heart principle-icon"></i>
                     <h3>Empathy</h3>
-                    <p>We understand the challenges of studying abroad and offer compassionate guidance to support you.
-                    </p>
+                    <p>We understand the challenges of studying abroad and offer compassionate guidance to support you.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SETTING THE STANDARD (Accordion) -->
     <section class="section-padding">
         <div class="container grid-2">
             <div class="reveal">
-                <h2 style="font-size: 2.2rem; color: var(--dark-navy); margin-bottom: 20px;">Setting the Standard for
-                    Study Abroad Guidance</h2>
-                <p style="color: var(--text-gray); line-height: 1.6; margin-bottom: 15px;">Choosing Educatia means
-                    partnering with a consultancy that truly understands the value of global education. We don't just
-                    offer services; we provide a transformative experience tailored to your academic and career
-                    aspirations. Our dedicated team of experts ensures you receive personalized advice and comprehensive
-                    support at every step of your study abroad journey.</p>
-                <p style="color: var(--text-gray); line-height: 1.6; margin-bottom: 30px;">From selecting the right
-                    university to preparing your application and navigating the visa process, we handle it all with
-                    precision and care. With a proven track record of successful placements and strong partnerships with
-                    leading institutions, we empower students to pursue their dreams and unlock global opportunities
-                    confidently. At Educatia, your success is our top priority.</p>
+                <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.2rem); color: var(--dark-navy); margin-bottom: 20px;">Setting the Standard for Study Abroad Guidance</h2>
+                <p style="color: var(--text-gray); line-height: 1.6; margin-bottom: 15px;">Choosing Educatia means partnering with a consultancy that truly understands the value of global education. We don't just offer services; we provide a transformative experience tailored to your academic and career aspirations. Our dedicated team of experts ensures you receive personalized advice and comprehensive support at every step of your study abroad journey.</p>
+                <p style="color: var(--text-gray); line-height: 1.6; margin-bottom: 30px;">From selecting the right university to preparing your application and navigating the visa process, we handle it all with precision and care. With a proven track record of successful placements and strong partnerships with leading institutions, we empower students to pursue their dreams and unlock global opportunities confidently. At Educatia, your success is our top priority.</p>
                 <a href="contact.html" class="btn-outline">Book Appointment</a>
             </div>
 
             <div class="accordion-wrapper reveal delay-2">
-
                 <div class="accordion-item active">
                     <div class="accordion-header">
                         <h4><i class="fa-solid fa-user-pen" style="margin-right: 10px;"></i> Personalized Guidance</h4>
@@ -1182,35 +1166,29 @@
                         <i class="fa-solid fa-xmark icon-cross"></i>
                     </div>
                     <div class="accordion-content" style="max-height: 300px; opacity: 1; padding-top: 10px;">
-                        <p>We understand that every student's journey is unique. Our experts provide tailored advice,
-                            helping you make informed decisions that align with your academic and career goals.</p>
+                        <p>We understand that every student's journey is unique. Our experts provide tailored advice, helping you make informed decisions that align with your academic and career goals.</p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h4><i class="fa-solid fa-globe" style="margin-right: 10px;"></i> Extensive University Network
-                        </h4>
+                        <h4><i class="fa-solid fa-globe" style="margin-right: 10px;"></i> Extensive University Network</h4>
                         <i class="fa-solid fa-plus icon-plus"></i>
                         <i class="fa-solid fa-xmark icon-cross" style="display: none;"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>With access to top-ranked universities worldwide, we offer you a vast array of options. We
-                            ensure that you find the perfect institution that fits your profile and ambitions.</p>
+                        <p>With access to top-ranked universities worldwide, we offer you a vast array of options. We ensure that you find the perfect institution that fits your profile and ambitions.</p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h4><i class="fa-solid fa-file-signature" style="margin-right: 10px;"></i> End-to-End
-                            Application Support</h4>
+                        <h4><i class="fa-solid fa-file-signature" style="margin-right: 10px;"></i> End-to-End Application Support</h4>
                         <i class="fa-solid fa-plus icon-plus"></i>
                         <i class="fa-solid fa-xmark icon-cross" style="display: none;"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>From initial document compilation to the final visa interview, our team handles all
-                            administrative heavy lifting. You can focus on your studies while we manage the paperwork.
-                        </p>
+                        <p>From initial document compilation to the final visa interview, our team handles all administrative heavy lifting. You can focus on your studies while we manage the paperwork.</p>
                     </div>
                 </div>
 
@@ -1221,16 +1199,13 @@
                         <i class="fa-solid fa-xmark icon-cross" style="display: none;"></i>
                     </div>
                     <div class="accordion-content">
-                        <p>Our high visa approval rates and student placement success stories speak for themselves.
-                            Trust a team that has consistently delivered results for countless students before you.</p>
+                        <p>Our high visa approval rates and student placement success stories speak for themselves. Trust a team that has consistently delivered results for countless students before you.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- STATS (From Home Page) -->
     <section class="stats-section" style="background-image: url('images/stats.jpg')">
         <div class="stats-overlay"></div>
         <div class="container grid-4">
@@ -1261,21 +1236,18 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS (From Home Page) -->
     <section class="section-padding">
         <div class="container testimonial-container">
             <div class="testi-header reveal">
                 <span style="color: var(--text-gray); font-size: 0.9rem;">Testimonial</span>
                 <h2>Hear How Educatia<br>Transformed <strong style="color: #406a7f;">Lives</strong></h2>
-                <p style="color: var(--text-gray); font-size: 0.95rem; line-height: 1.6;">At Educatia, we've helped
-                    countless students turn their study abroad dreams into reality. See how we've empowered others to
-                    achieve global success.</p>
+                <p style="color: var(--text-gray); font-size: 0.95rem; line-height: 1.6;">At Educatia, we've helped countless students turn their study abroad dreams into reality. See how we've empowered others to achieve global success.</p>
                 <div class="nav-arrows">
-                    <button class="arrow-btn"><i class="fa-solid fa-arrow-left"></i></button>
-                    <button class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="arrow-btn" id="prev-testi"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="arrow-btn" id="next-testi"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
-            <div class="testi-cards">
+            <div class="testi-cards" id="testi-track">
                 <div class="testi-card reveal delay-2">
                     <div class="testi-author-wrapper">
                         <img src="images/fatima-6_a7sGyr.avif" alt="Profile Image" class="testi-avatar">
@@ -1284,11 +1256,8 @@
                             <span>Student</span>
                         </div>
                     </div>
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i></div>
-                    <p>Educatia made my dream of studying abroad a reality! Their expert guidance made the entire
-                        process smooth and stress-free.</p>
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>Educatia made my dream of studying abroad a reality! Their expert guidance made the entire process smooth and stress-free.</p>
                 </div>
                 <div class="testi-card reveal delay-3">
                     <div class="testi-author-wrapper">
@@ -1298,35 +1267,27 @@
                             <span>Student</span>
                         </div>
                     </div>
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i></div>
-                    <p>From university selection to visa approval, Educatia provided exceptional support at every step.
-                        Highly recommended!</p>
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>From university selection to visa approval, Educatia provided exceptional support at every step. Highly recommended!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA BANNER -->
     <section class="cta-section reveal">
         <h2>Take the Next Step Toward Your Study<br>Abroad Dream</h2>
-        <p>Get expert guidance and seamless support for every stage of your journey.<br>Let's make your global education
-            goals a reality—contact us today!</p>
+        <p>Get expert guidance and seamless support for every stage of your journey. Let's make your global education goals a reality—contact us today!</p>
         <a href="contact.html" class="btn-teal" style="background-color: #00b4b6;">Get in touch</a>
     </section>
 
-    <!-- FOOTER (Updated) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid reveal">
                 <div class="footer-about">
-                    <a href="#" class="logo" style="color: var(--dark-navy);">
-                        <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo"
-                            style="height: 50px; margin-bottom: 10px;">
+                    <a href="index.html" class="logo" style="color: var(--dark-navy);">
+                        <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo" style="height: 40px; margin-bottom: 10px;">
                     </a>
-                    <p>We don't just guide you to study abroad—we help you build a brighter, globally connected future.
-                        Trust us to turn your aspirations into achievements.</p>
+                    <p>We don't just guide you to study abroad—we help you build a brighter, globally connected future. Trust us to turn your aspirations into achievements.</p>
                     <div class="social-links">
                         <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -1368,20 +1329,15 @@
                     </div>
                 </div>
             </div>
-            <!-- Copyright -->
             <div class="copyright">
-                &copy; Copyright 2026 <strong>Educatia Overseas Education Consultants</strong>. Developed With Love By
-                <strong>Technic Mentors</strong>.
+                &copy; Copyright 2026 <strong>Educatia Overseas Education Consultants</strong>. Developed With Love By <strong>Technic Mentors</strong>.
             </div>
         </div>
     </footer>
 
-    <!-- Floating Bot -->
     <div class="chatbot"><i class="fa-solid fa-robot"></i></div>
 
-    <!-- SCRIPTS -->
     <script>
-        // Navbar Scroll
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -1391,7 +1347,27 @@
             }
         });
 
-        // Scroll Reveal Animations
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if(menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-xmark');
+            });
+        }
+
+        document.querySelectorAll('.has-dropdown > a').forEach(dropTrigger => {
+            dropTrigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    dropTrigger.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             const revealElements = document.querySelectorAll('.reveal');
             const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
@@ -1408,14 +1384,12 @@
             revealElements.forEach(el => revealOnScroll.observe(el));
         });
 
-        // ACCORDION JAVASCRIPT
         const accordionHeaders = document.querySelectorAll('.accordion-header');
         accordionHeaders.forEach(header => {
             header.addEventListener('click', () => {
                 const item = header.parentElement;
                 const isActive = item.classList.contains('active');
 
-                // Close all items
                 document.querySelectorAll('.accordion-item').forEach(acc => {
                     acc.classList.remove('active');
                     acc.querySelector('.icon-plus').style.display = 'block';
@@ -1425,19 +1399,33 @@
                     acc.querySelector('.accordion-content').style.opacity = '0';
                 });
 
-                // Open clicked if it wasn't open
                 if (!isActive) {
                     item.classList.add('active');
                     item.querySelector('.icon-plus').style.display = 'none';
                     item.querySelector('.icon-cross').style.display = 'block';
-                    // Apply inline styles to open smoothly
                     const content = item.querySelector('.accordion-content');
-                    content.style.maxHeight = content.scrollHeight + 30 + 'px'; // add buffer space
+                    content.style.maxHeight = content.scrollHeight + 30 + 'px';
                     content.style.paddingTop = '10px';
                     content.style.opacity = '1';
                 }
             });
         });
+
+        const testiTrack = document.getElementById('testi-track');
+        const prevTestiBtn = document.getElementById('prev-testi');
+        const nextTestiBtn = document.getElementById('next-testi');
+
+        if(testiTrack && prevTestiBtn && nextTestiBtn) {
+            nextTestiBtn.addEventListener('click', () => {
+                const cardWidth = testiTrack.querySelector('.testi-card').offsetWidth + 20;
+                testiTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            });
+
+            prevTestiBtn.addEventListener('click', () => {
+                const cardWidth = testiTrack.querySelector('.testi-card').offsetWidth + 20;
+                testiTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            });
+        }
     </script>
 </body>
 

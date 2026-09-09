@@ -10,7 +10,6 @@
         rel="stylesheet">
 
     <style>
-        /* --- GLOBAL & UTILITIES --- */
         :root {
             --dark-navy: #3d575b;
             --cyan: #558b8b;
@@ -40,9 +39,10 @@
         }
 
         .container {
-             width: 1300px;
+            max-width: 1300px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 1%;
+            padding: 0 20px;
         }
 
         .section-padding {
@@ -53,7 +53,6 @@
             text-align: center;
         }
 
-        /* --- SCROLL REVEAL ANIMATIONS --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -65,25 +64,15 @@
             transform: translateY(0);
         }
 
-        .delay-1 {
-            transition-delay: 50ms;
-        }
+        .delay-1 { transition-delay: 50ms; }
+        .delay-2 { transition-delay: 100ms; }
+        .delay-3 { transition-delay: 150ms; }
 
-        .delay-2 {
-            transition-delay: 100ms;
-        }
-
-        .delay-3 {
-            transition-delay: 150ms;
-        }
-
-        /* Section Headers */
         .sec-title {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             color: var(--dark-navy);
             margin-bottom: 15px;
             font-weight: 700;
-            /* Bolder for this page */
         }
 
         .sec-subtitle {
@@ -92,9 +81,9 @@
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto 50px auto;
+            padding: 0 15px;
         }
 
-        /* --- NAVBAR --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -128,9 +117,9 @@
         }
 
         .logo-img {
-            height: 50px;
+            height: 40px;
             width: auto;
-            max-width: 200px;
+            max-width: 150px;
             object-fit: contain;
         }
 
@@ -140,6 +129,7 @@
             gap: 25px;
             margin: 0;
             padding: 0;
+            align-items: center;
         }
 
         .nav-links li {
@@ -256,13 +246,13 @@
             font-size: 1.5rem;
             color: var(--dark-navy);
             cursor: pointer;
+            z-index: 100000;
         }
 
-        /* --- HERO SECTION --- */
         .inner-hero {
             position: relative;
-            height: 60vh;
-            min-height: 450px;
+            height: 50vh;
+            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -289,17 +279,18 @@
             color: #fff;
             animation: fadeInUp 0.6s ease-out forwards;
             max-width: 800px;
+            padding: 0 20px;
         }
 
         .inner-hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 20px;
         }
 
         .inner-hero p {
-            font-size: 1.15rem;
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
             line-height: 1.6;
             margin-bottom: 30px;
             opacity: 0.9;
@@ -328,14 +319,12 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* --- SEAMLESS TRAVELING (Grid of 6) --- */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -355,8 +344,7 @@
         .service-feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border-left-width: 0.5vw;
-            border-left-color: var(--teal);
+            border-left: 5px solid var(--teal);
         }
 
         .feature-icon-circle {
@@ -386,7 +374,6 @@
             margin: 0;
         }
 
-        /* --- DESTINATIONS GRID --- */
         .dest-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -415,7 +402,6 @@
             position: absolute;
             inset: 0;
             background: rgba(0, 0, 0, 0.35);
-            /* Dark overlay */
             transition: background 0.4s ease;
             z-index: 1;
         }
@@ -445,12 +431,10 @@
             transform: translate(-50%, -55%);
         }
 
-        /* Dynamic Spans for exactly matching the video layout */
         .span-2 {
             grid-column: span 2;
         }
 
-        /* --- WHAT SETS US MILES AHEAD --- */
         .split-section {
             display: flex;
             gap: 60px;
@@ -501,33 +485,6 @@
             font-size: 1.2rem;
         }
 
-        /* --- GALLERY SECTION --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .gallery-item {
-            height: 280px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* --- INQUIRY FORM SECTION --- */
         .form-card {
             background: #fff;
             padding: 40px;
@@ -596,10 +553,8 @@
             box-shadow: 0 8px 20px rgba(32, 201, 151, 0.3);
         }
 
-        /* --- FOOTER --- */
         .footer {
-            background: #f4f6f8 url('images/footer-bg-placeholder.jpg') no-repeat bottom center;
-            background-size: cover;
+            background: #f4f6f8;
             padding: 60px 5% 20px 5%;
             border-top: 1px solid #eee;
             position: relative;
@@ -628,12 +583,20 @@
 
         .social-links a {
             color: var(--dark-navy);
-            font-size: 1.3rem;
+            font-size: 1.1rem;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #507672;
+            background: #507672;
+            color: #fff;
             transform: translateY(-3px);
         }
 
@@ -683,13 +646,13 @@
 
         .contact-item i {
             color: var(--dark-navy);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-top: 3px;
         }
 
         .copyright {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555;
             padding-top: 25px;
             border-top: 1px solid #dcdcdc;
@@ -701,20 +664,19 @@
             color: var(--dark-navy);
         }
 
-        /* Floating Bot */
         .chatbot {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: var(--yellow);
             color: #000;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             cursor: pointer;
@@ -726,10 +688,15 @@
             box-shadow: 0 8px 25px rgba(255, 177, 0, 0.4);
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
             .grid-3 {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
             }
 
             .dest-grid {
@@ -742,18 +709,34 @@
 
             .split-section {
                 flex-direction: column;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
-        }
 
-        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background-color: #ffffff;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding-left: 50px;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                transition: right 0.4s ease-in-out;
+                z-index: 99999;
+            }
+
+            .nav-links.active-menu {
+                right: 0;
+            }
+
             .mobile-menu-toggle {
                 display: block;
             }
@@ -762,46 +745,21 @@
                 display: none;
             }
 
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #fff;
-                padding: 20px 5%;
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-            }
-
-            .nav-links.active-menu {
-                display: flex;
-            }
-
             .dropdown-menu {
-                position: static;
+                position: relative;
+                top: 0;
+                box-shadow: none;
+                background: #f8f9fa;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                transform: none !important;
                 visibility: visible;
                 opacity: 1;
-                transform: none;
-                box-shadow: none;
-                display: none;
-                padding-left: 20px;
             }
 
-            .has-dropdown:hover .dropdown-menu {
-                display: block;
-            }
-
-            .inner-hero h1 {
-                font-size: 2.5rem;
+            .has-dropdown.open .dropdown-menu {
+                max-height: 300px;
             }
         }
     </style>
@@ -809,7 +767,6 @@
 
 <body>
 
-    <!-- NAVBAR -->
     <header class="navbar">
         <a href="index.html" class="logo">
             <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo">
@@ -849,18 +806,15 @@
         <a href="contact.html" class="btn-outline-nav">Book An Appointment</a>
     </header>
 
-    <!-- INNER HERO SECTION -->
     <section class="inner-hero" style="background-image: url('images/hero-bg-florence.jpg');">
         <div class="inner-hero-overlay"></div>
         <div class="inner-hero-content">
             <h1>Not Just Trips — We Craft<br>Experiences</h1>
-            <p>From visas to hotel bookings, we handle it all — turning your travel plans<br>into unforgettable
-                experiences.</p>
-            <a href="#" class="btn-transparent-outline">Plan Your Trip</a>
+            <p>From visas to hotel bookings, we handle it all — turning your travel plans into unforgettable experiences.</p>
+            <a href="#inquiry" class="btn-transparent-outline">Plan Your Trip</a>
         </div>
     </section>
 
-    <!-- MAKING YOUR TRAVELING SEAMLESS -->
     <section class="section-padding bg-light">
         <div class="container text-center">
             <h2 class="sec-title reveal">Making Your Traveling<br>Seamless</h2>
@@ -900,13 +854,11 @@
         </div>
     </section>
 
-    <!-- EXPLORE POPULAR DESTINATIONS -->
     <section class="section-padding">
         <div class="container text-center">
             <h2 class="sec-title reveal">Explore Popular Tourism <span style="color: #0d6efd;">Destinations</span></h2>
             <br>
             <div class="dest-grid reveal delay-1">
-                <!-- Row 1 -->
                 <div class="dest-card span-2">
                     <div class="dest-img" style="background-image: url('images/paris.jfif');"></div>
                     <div class="dest-title">Paris</div>
@@ -915,7 +867,6 @@
                     <div class="dest-img" style="background-image: url('images/ny.jfif');"></div>
                     <div class="dest-title">New York</div>
                 </div>
-                <!-- Row 2 -->
                 <div class="dest-card">
                     <div class="dest-img" style="background-image: url('images/tokyo.jfif');"></div>
                     <div class="dest-title">Tokyo</div>
@@ -924,7 +875,6 @@
                     <div class="dest-img" style="background-image: url('images/lon.jfif');"></div>
                     <div class="dest-title">London</div>
                 </div>
-                <!-- Row 3 -->
                 <div class="dest-card span-2">
                     <div class="dest-img" style="background-image: url('images/dubai.jfif');"></div>
                     <div class="dest-title">Dubai</div>
@@ -937,7 +887,6 @@
         </div>
     </section>
 
-    <!-- WHAT SETS US MILES AHEAD -->
     <section class="section-padding bg-light">
         <div class="container split-section">
             <div class="split-text reveal">
@@ -960,10 +909,7 @@
         </div>
     </section>
 
-   
-
-    <!-- PLAN YOUR DREAM JOURNEY (FORM) -->
-    <section class="section-padding bg-light">
+    <section class="section-padding bg-light" id="inquiry">
         <div class="container split-section">
             <div class="split-text reveal">
                 <h2 class="sec-title">Plan Your Dream Journey</h2>
@@ -971,7 +917,7 @@
                     Fill out the inquiry form and let us take you on the adventure of a lifetime. Our travel experts
                     will get back to you with personalized tour options.
                 </p>
-                <img src="images/lugg.jfif" alt="Traveler" style="width: 80%; margin-top: 20px;">
+                <img src="images/lugg.jfif" alt="Traveler" style="width: 80%; border-radius: 8px; margin-top: 20px;">
             </div>
             <div class="split-text reveal delay-2">
                 <div class="form-card">
@@ -1005,14 +951,13 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid reveal">
                 <div class="footer-about">
                     <a href="index.html" class="logo" style="color: var(--dark-navy);">
                         <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo"
-                            style="height: 50px; margin-bottom: 10px;">
+                            style="height: 40px; margin-bottom: 10px;">
                     </a>
                     <p>We don't just guide you to study abroad—we help you build a brighter, globally connected future.
                         Trust us to turn your aspirations into achievements.</p>
@@ -1064,12 +1009,9 @@
         </div>
     </footer>
 
-    <!-- Floating Bot -->
     <div class="chatbot"><i class="fa-solid fa-robot"></i></div>
 
-    <!-- SCRIPTS -->
     <script>
-        // Navbar Scroll Effect
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -1079,15 +1021,25 @@
             }
         });
 
-        // Mobile Menu Toggle
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
 
         mobileToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active-menu');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
         });
 
-        // Scroll Reveal Animations
+        document.querySelectorAll('.has-dropdown > a').forEach(dropTrigger => {
+            dropTrigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    dropTrigger.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             const revealElements = document.querySelectorAll('.reveal');
             const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };

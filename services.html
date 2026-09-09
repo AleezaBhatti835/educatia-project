@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- GLOBAL & UTILITIES --- */
         :root {
             --dark-navy: #3d575b;
             --cyan: #558b8b;
@@ -37,21 +36,22 @@
         a { text-decoration: none; }
 
         .container {
-             width: 1300px;
+            max-width: 1300px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 1%;
+            padding: 0 20px;
         }
 
         .container-wide {
-            max-width: 96%;
+            max-width: 1300px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 2%;
+            padding: 0 20px;
         }
 
         .section-padding { padding: 80px 0; }
         .text-center { text-align: center; }
 
-        /* --- SCROLL REVEAL ANIMATIONS --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -60,7 +60,6 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 50ms; }
 
-        /* --- NAVBAR --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -85,9 +84,9 @@
 
         .logo { display: flex; align-items: center; transition: transform 0.3s ease; }
         .logo:hover { transform: scale(1.02); }
-        .logo-img { height: 50px; width: auto; max-width: 200px; object-fit: contain; }
+        .logo-img { height: 40px; width: auto; max-width: 150px; object-fit: contain; }
 
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; align-items: center; }
         .nav-links li { position: relative; }
         .nav-links a {
             color: #272424;
@@ -163,13 +162,13 @@
             font-size: 1.5rem;
             color: var(--dark-navy);
             cursor: pointer;
+            z-index: 100000;
         }
 
-        /* --- INNER HERO SECTION --- */
         .inner-hero {
             position: relative;
-            height: 45vh;
-            min-height: 350px;
+            height: 40vh;
+            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -191,24 +190,23 @@
             text-align: center;
             color: #fff;
             animation: fadeInUp 0.6s ease-out forwards;
+            padding: 0 20px;
         }
 
-        .inner-hero h1 { font-size: 3.5rem; font-weight: 700; letter-spacing: 1px; transition: all 0.3s ease; }
+        .inner-hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 700; letter-spacing: 1px; transition: all 0.3s ease; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- SERVICES LAYOUT (Sidebar + Content) --- */
         .services-layout {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 40px;
             align-items: flex-start;
         }
 
-        /* SIDEBAR */
         .services-sidebar {
             position: sticky;
             top: 100px;
@@ -237,7 +235,6 @@
         }
 
         .tab-btn i { font-size: 1.1rem; color: var(--teal); transition: color 0.3s; }
-        
         .tab-btn:hover { background: #f8fcfb; color: var(--teal); border-left-color: var(--teal); }
 
         .tab-btn.active {
@@ -247,7 +244,6 @@
             font-weight: 600;
         }
 
-        /* CONTENT AREA */
         .tab-content-container {
             background: transparent;
             min-height: 500px;
@@ -266,7 +262,7 @@
         }
 
         .pane-title {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.2rem);
             color: #2c4247;
             margin-bottom: 20px;
             line-height: 1.2;
@@ -275,13 +271,12 @@
         .pane-desc { color: var(--text-gray); line-height: 1.7; font-size: 1rem; margin-bottom: 20px; }
 
         .pane-subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
             color: var(--dark-navy);
             margin-bottom: 20px;
             margin-top: 40px;
         }
 
-        /* Custom Grids inside Tabs */
         .overview-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -301,8 +296,7 @@
         .service-feature-card:hover { 
             transform: translateY(-5px); 
             box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
-            border-left-width: 0.5vw;
-            border-left-color: var(--teal); 
+            border-left: 5px solid var(--teal); 
         }
         
         .feature-icon-circle {
@@ -318,7 +312,6 @@
         .service-feature-card h4 { color: var(--dark-navy); font-size: 1.05rem; margin-bottom: 10px; font-weight: 600;}
         .service-feature-card p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; margin: 0;}
 
-        /* Split Section for Tabs */
         .split-section {
             display: flex;
             gap: 40px;
@@ -329,7 +322,6 @@
         .split-img { flex: 1; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .split-img img { width: 100%; height: auto; display: block; object-fit: cover;}
 
-        /* Bottom 3 Cards Grid */
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         
         .simple-card { 
@@ -345,7 +337,7 @@
         .simple-card:hover { 
             transform: translateY(-5px); 
             box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
-            border-color: var(--teal); /* Hover border added here */
+            border-color: var(--teal);
         }
         
         .simple-card h4 { color: var(--dark-navy); margin-bottom: 10px; font-size: 1.05rem; font-weight: 600; }
@@ -368,34 +360,28 @@
             transform: translateY(-2px);
         }
 
-        /* --- CTA BANNER --- */
         .cta-section {
             background: linear-gradient(135deg, #557a83, #1a6475); color: #fff;
-            text-align: center; padding: 80px 5%; position: relative; overflow: hidden;
+            text-align: center; padding: 80px 20px; position: relative; overflow: hidden;
             margin-top: 60px;
         }
-        .cta-section::after {
-            content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
-            background: rgba(255,255,255,0.05); border-radius: 50%;
-        }
-        .cta-section h2 { font-size: 2.2rem; margin-bottom: 15px; position: relative; z-index: 2; }
-        .cta-section p { font-size: 1rem; margin-bottom: 30px; opacity: 0.9; position: relative; z-index: 2; }
+        .cta-section h2 { font-size: clamp(1.8rem, 3.5vw, 2.2rem); margin-bottom: 15px; position: relative; z-index: 2; }
+        .cta-section p { font-size: 1rem; margin-bottom: 30px; opacity: 0.9; position: relative; z-index: 2; max-width: 600px; margin-left: auto; margin-right: auto; }
         
         .btn-teal {
             background: #507672; color: #fff; padding: 12px 35px; border-radius: 4px; display: inline-block; font-weight: 500; transition: all 0.3s ease; position: relative; z-index: 2; box-shadow: 0 4px 10px rgba(80, 118, 114, 0.2);
         }
         .btn-teal:hover { background: #3a5a57; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(80, 118, 114, 0.4); }
 
-        /* --- FOOTER --- */
         .footer {
-            background: #f4f6f8 url('images/footer-bg-placeholder.jpg') no-repeat bottom center;
-            background-size: cover; padding: 60px 5% 20px 5%; border-top: 1px solid #eee; position: relative;
+            background: #f4f6f8;
+            padding: 60px 5% 20px 5%; border-top: 1px solid #eee; position: relative;
         }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 40px; position: relative; z-index: 2; }
         .footer-about p { font-size: 0.9rem; color: var(--text-gray); margin: 20px 0; line-height: 1.6; }
         .social-links { display: flex; gap: 20px; }
-        .social-links a { color: var(--dark-navy); font-size: 1.3rem; transition: all 0.3s ease; }
-        .social-links a:hover { color: #507672; transform: translateY(-3px); }
+        .social-links a { color: var(--dark-navy); font-size: 1.1rem; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f0f0f0; transition: all 0.3s ease; }
+        .social-links a:hover { background: #507672; color: #fff; transform: translateY(-3px); }
         .footer-links h3, .footer-contact h3 { color: var(--dark-navy); margin-bottom: 20px; font-size: 1.2rem; font-weight: 700; }
         .footer-links ul { list-style: none; padding: 0; margin: 0; }
         .footer-links li { margin-bottom: 12px; }
@@ -403,70 +389,80 @@
         .footer-links a:hover { color: #507672; transform: translateX(5px); }
         .contact-item { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.95rem; color: var(--text-gray); transition: transform 0.3s ease; }
         .contact-item:hover { transform: translateX(5px); color: var(--dark-navy); }
-        .contact-item i { color: var(--dark-navy); font-size: 1.2rem; margin-top: 3px; }
+        .contact-item i { color: var(--dark-navy); font-size: 1.1rem; margin-top: 3px; }
         
         .copyright {
-            text-align: center; font-size: 0.9rem; color: #555; padding-top: 25px; border-top: 1px solid #dcdcdc; position: relative; z-index: 2;
+            text-align: center; font-size: 0.85rem; color: #555; padding-top: 25px; border-top: 1px solid #dcdcdc; position: relative; z-index: 2;
         }
         .copyright strong { color: var(--dark-navy); }
 
-        /* Floating Bot */
         .chatbot {
             position: fixed; bottom: 30px; right: 30px;
-            background: var(--yellow); color: #000; width: 60px; height: 60px;
+            background: var(--yellow); color: #000; width: 55px; height: 55px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.4rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             z-index: 1000; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .chatbot:hover { transform: scale(1.15) translateY(-5px); box-shadow: 0 8px 25px rgba(255, 177, 0, 0.4); }
 
-        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-layout { grid-template-columns: 240px 1fr; gap: 25px; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 992px) {
             .services-layout { grid-template-columns: 1fr; }
-            .services-sidebar { position: static; display: grid; grid-template-columns: repeat(2, 1fr); padding: 10px; }
+            .services-sidebar { position: static; display: grid; grid-template-columns: repeat(2, 1fr); padding: 10px; gap: 5px; }
+            .tab-btn { padding: 10px 15px; font-size: 0.85rem; }
             .split-section { flex-direction: column; }
             .grid-3 { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-        }
-        
-        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background-color: #ffffff;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding-left: 50px;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                transition: right 0.4s ease-in-out;
+                z-index: 99999;
+            }
+
+            .nav-links.active-menu { right: 0; }
             .mobile-menu-toggle { display: block; }
             .btn-outline-nav { display: none; }
-            
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #fff;
-                padding: 20px 5%;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-            }
-            .nav-links.active-menu { display: flex; }
-            
+
             .dropdown-menu {
-                position: static;
+                position: relative;
+                top: 0;
+                box-shadow: none;
+                background: #f8f9fa;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                transform: none !important;
                 visibility: visible;
                 opacity: 1;
-                transform: none;
-                box-shadow: none;
-                display: none; 
-                padding-left: 20px;
             }
-            .has-dropdown:hover .dropdown-menu { display: block; }
-            
+
+            .has-dropdown.open .dropdown-menu { max-height: 300px; }
+        }
+        
+        @media (max-width: 576px) {
             .services-sidebar { grid-template-columns: 1fr; }
-            .overview-grid { grid-template-columns: 1fr; }
-            .inner-hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
     <header class="navbar">
         <a href="index.html" class="logo">
             <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo">
@@ -505,7 +501,6 @@
         <a href="contact.html" class="btn-outline-nav">Book An Appointment</a>
     </header>
 
-    <!-- INNER HERO SECTION -->
     <section class="inner-hero" style="background-image: url('images/hero-bg-florence.jpg');">
         <div class="inner-hero-overlay"></div>
         <div class="inner-hero-content">
@@ -513,11 +508,9 @@
         </div>
     </section>
 
-    <!-- SERVICES LAYOUT (Sidebar + Dynamic Content) -->
     <section class="section-padding">
         <div class="container-wide services-layout">
             
-            <!-- Left Sidebar Navigation -->
             <div class="services-sidebar reveal">
                 <button class="tab-btn active" data-target="overview" data-title="Expert Services For Global Education">
                     <i class="fa-solid fa-globe"></i> Overview
@@ -542,10 +535,8 @@
                 </button>
             </div>
 
-            <!-- Right Content Area -->
             <div class="tab-content-container reveal delay-1">
 
-                <!-- 1. OVERVIEW PANE -->
                 <div id="overview" class="tab-pane active">
                     <h2 class="pane-title">Comprehensive Solutions For Your<br><strong style="color: #4fa199;">Study Abroad</strong> Goals</h2>
                     <p class="pane-desc">Navigating the path to studying abroad can be complex, but with Educatia Study Abroad Consultants, you are never alone. We offer a wide range of expert services designed to simplify your journey and help you achieve your academic dreams with confidence.</p>
@@ -582,7 +573,7 @@
                             <h3 class="pane-subtitle" style="margin-top: 0;">Let's Make It Happen!</h3>
                             <p class="pane-desc">Your academic journey deserves expert guidance. Whether you need help choosing the right university, securing scholarships, or navigating complex visa processes — we are here for you. Let's make your dream of studying abroad a reality, together.</p>
                             <h4 style="color: var(--dark-navy); margin-bottom: 15px; font-weight: 600;">Don't wait. Let us help you start your journey today!</h4>
-                            <a href="#" class="btn-outline-teal">Get Expert Guidance &rarr;</a>
+                            <a href="contact.html" class="btn-outline-teal">Get Expert Guidance &rarr;</a>
                         </div>
                         <div class="split-img">
                             <img src="images/consu.jfif" alt="Students Consulting">
@@ -590,9 +581,8 @@
                     </div>
                 </div>
 
-                <!-- 2. CAREER COUNSELING PANE -->
                 <div id="career" class="tab-pane">
-                    <h2 class="pane-title" >Career Counseling: Your Path to a Fulfilling Future</h2>
+                    <h2 class="pane-title">Career Counseling: Your Path to a Fulfilling Future</h2>
                     <p class="pane-desc">Choosing the right career path is one of the most important decisions you'll make. At Educatia, our Career Counseling service is designed to help you discover your strengths, align your interests with your future goals, and chart the best course for your success. Our expert consultants provide personalized guidance that empowers you to make informed decisions, setting you up for success in both your academic and professional life.</p>
                     
                     <div class="split-section">
@@ -645,14 +635,13 @@
                     </div>
                 </div>
 
-                <!-- 3. SELECTION OF UNIVERSITY PANE -->
                 <div id="selection" class="tab-pane">
                     <h2 class="pane-title">Selection of University</h2>
                     <p class="pane-desc">Choosing the right university is one of the most crucial decisions for your academic and professional journey. At Educatia, we understand that each student has unique goals and preferences. That's why we provide personalized guidance to help you find the best-fit university for your aspirations.</p>
                     
                     <div class="split-section">
                         <div class="split-text">
-                            <h3 class="pane-subtitle" >Why Selecting the Right University Is Crucial For Your Future</h3>
+                            <h3 class="pane-subtitle">Why Selecting the Right University Is Crucial For Your Future</h3>
                             <p class="pane-desc" style="margin-bottom: 0;">Choosing the right university shapes not only your academic experience but also your professional journey. The right institution provides access to quality education, industry connections, and a network of peers and mentors who can significantly impact your career growth. Furthermore, it enhances your employability by offering programs aligned with evolving job market trends. Making an informed decision at this stage can pave the way for a successful and fulfilling future.</p>
                         </div>
                         <div class="split-img">
@@ -700,7 +689,6 @@
                     </div>
                 </div>
 
-                <!-- 4. SCHOLARSHIPS PANE -->
                 <div id="scholarships" class="tab-pane">
                     <h2 class="pane-title">Finance Your Education with Scholarships</h2>
                     <p class="pane-desc">Higher education can be expensive, but financial constraints shouldn't hold you back from pursuing your dreams. At Educatia, we guide you in discovering and applying for the best scholarship opportunities, ensuring that you receive the support you deserve to make studying abroad a reality.</p>
@@ -755,7 +743,6 @@
                     </div>
                 </div>
 
-                <!-- 5. APPLICATION HANDLING PANE -->
                 <div id="application" class="tab-pane">
                     <h2 class="pane-title">Let's Handle All Your Paper Work Labor</h2>
                     <p class="pane-desc">Navigating the application process for universities abroad can be overwhelming. From gathering documents to meeting deadlines, every step requires precision and careful attention. At Educatia, we take the stress out of the process by handling your application professionally and efficiently, increasing your chances of acceptance.</p>
@@ -810,7 +797,6 @@
                     </div>
                 </div>
 
-                <!-- 6. INTERVIEW PANE -->
                 <div id="interview" class="tab-pane">
                     <h2 class="pane-title">Ace Your Interview With Confidence</h2>
                     <p class="pane-desc">Securing admission to your dream university often requires more than just a strong application. Many institutions conduct interviews to assess a candidate's readiness, communication skills, and overall fit. At Educatia, we provide comprehensive interview preparation to help you ace your university interviews confidently and effectively.</p>
@@ -865,7 +851,6 @@
                     </div>
                 </div>
 
-                <!-- 7. PRE-DEPARTURE PANE -->
                 <div id="predeparture" class="tab-pane">
                     <h2 class="pane-title">Get The Final Touch Before You Fly</h2>
                     <p class="pane-desc">Your journey doesn't end with getting admission—it's just the beginning. Moving to a new country for your education requires careful planning and preparation. Educatia's Pre-Departure Briefing ensures you're fully equipped to handle this exciting transition with ease and confidence.</p>
@@ -924,20 +909,18 @@
         </div>
     </section>
 
-    <!-- CTA BANNER -->
     <section class="cta-section reveal">
         <h2>Take the Next Step Toward Your Study<br>Abroad Dream</h2>
-        <p>Get expert guidance and seamless support for every stage of your journey.<br>Let's make your global education goals a reality—contact us today!</p>
+        <p>Get expert guidance and seamless support for every stage of your journey. Let's make your global education goals a reality—contact us today!</p>
         <a href="contact.html" class="btn-teal" style="background-color: #ffffff; color: var(--dark-navy);">Get in touch</a>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid reveal">
                 <div class="footer-about">
                     <a href="index.html" class="logo" style="color: var(--dark-navy);">
-                        <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo" style="height: 50px; margin-bottom: 10px;">
+                        <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo" style="height: 40px; margin-bottom: 10px;">
                     </a>
                     <p>We don't just guide you to study abroad—we help you build a brighter, globally connected future. Trust us to turn your aspirations into achievements.</p>
                     <div class="social-links">
@@ -987,12 +970,9 @@
         </div>
     </footer>
 
-    <!-- Floating Bot -->
     <div class="chatbot"><i class="fa-solid fa-robot"></i></div>
 
-    <!-- SCRIPTS -->
     <script>
-        // Navbar Scroll Effect
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -1002,44 +982,48 @@
             }
         });
 
-        // Mobile Menu Toggle
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
         
         mobileToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active-menu');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
         });
 
-        // Tab Switching Logic
+        document.querySelectorAll('.has-dropdown > a').forEach(dropTrigger => {
+            dropTrigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    dropTrigger.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabPanes = document.querySelectorAll('.tab-pane');
         const heroTitle = document.getElementById('hero-title');
 
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons and panes
                 tabBtns.forEach(b => b.classList.remove('active'));
-                tabPanes.forEach(p => p.classList.remove('active'));
+                tabPanes.exit = tabPanes.forEach(p => p.classList.remove('active'));
 
-                // Add active class to clicked button
                 btn.classList.add('active');
 
-                // Show matching content pane
                 const targetId = btn.getAttribute('data-target');
                 document.getElementById(targetId).classList.add('active');
 
-                // Change Hero Title
                 const newTitle = btn.getAttribute('data-title');
                 heroTitle.textContent = newTitle;
                 
-                // Optional: Scroll to top of content on mobile
                 if(window.innerWidth < 992) {
                     document.querySelector('.tab-content-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Scroll Reveal Animations
         document.addEventListener("DOMContentLoaded", function() {
             const revealElements = document.querySelectorAll('.reveal');
             const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
@@ -1053,20 +1037,15 @@
             }, revealOptions);
             revealElements.forEach(el => revealOnScroll.observe(el));
         });
-        // --- ADD THIS CODE TO services.html ---
-        // Check if URL has a hash tag (e.g., #career) on page load
+
         window.addEventListener('load', () => {
             const hash = window.location.hash;
             if (hash) {
-                // Remove the '#' to get the target ID
                 const targetId = hash.substring(1);
                 const targetBtn = document.querySelector(`.tab-btn[data-target="${targetId}"]`);
                 
                 if (targetBtn) {
-                    // Trigger a click on that specific tab button
                     targetBtn.click();
-                    
-                    // Small delay to let the layout settle, then scroll to the container
                     setTimeout(() => {
                         document.querySelector('.services-layout').scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 100);

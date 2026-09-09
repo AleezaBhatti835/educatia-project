@@ -10,9 +10,8 @@
         rel="stylesheet">
 
     <style>
-        /* --- GLOBAL & UTILITIES --- */
         :root {
-             --dark-navy: #3d575b;
+            --dark-navy: #3d575b;
             --cyan: #558b8b;
             --teal: #4b8e8d;
             --text-gray: #2a3c41;
@@ -40,9 +39,10 @@
         }
 
         .container {
-             width: 1300px;
+            max-width: 1300px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 1%;
+            padding: 0 20px;
         }
 
         .section-padding {
@@ -53,7 +53,6 @@
             text-align: center;
         }
 
-        /* --- SCROLL REVEAL ANIMATIONS --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -65,25 +64,13 @@
             transform: translateY(0);
         }
 
-        .delay-1 {
-            transition-delay: 50ms;
-        }
+        .delay-1 { transition-delay: 50ms; }
+        .delay-2 { transition-delay: 100ms; }
+        .delay-3 { transition-delay: 150ms; }
+        .delay-4 { transition-delay: 200ms; }
 
-        .delay-2 {
-            transition-delay: 100ms;
-        }
-
-        .delay-3 {
-            transition-delay: 150ms;
-        }
-
-        .delay-4 {
-            transition-delay: 200ms;
-        }
-
-        /* Section Headers */
         .sec-title {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             color: var(--dark-navy);
             margin-bottom: 15px;
             font-weight: 700;
@@ -95,9 +82,9 @@
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto 50px auto;
+            padding: 0 15px;
         }
 
-        /* --- NAVBAR --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -131,9 +118,9 @@
         }
 
         .logo-img {
-            height: 50px;
+            height: 40px;
             width: auto;
-            max-width: 200px;
+            max-width: 150px;
             object-fit: contain;
         }
 
@@ -143,6 +130,7 @@
             gap: 25px;
             margin: 0;
             padding: 0;
+            align-items: center;
         }
 
         .nav-links li {
@@ -259,13 +247,13 @@
             font-size: 1.5rem;
             color: var(--dark-navy);
             cursor: pointer;
+            z-index: 100000;
         }
 
-        /* --- INNER HERO SECTION --- */
         .inner-hero {
             position: relative;
-            height: 45vh;
-            min-height: 350px;
+            height: 40vh;
+            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -281,7 +269,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background:rgba(100, 138, 143, 0.979);
+            background: rgba(100, 138, 143, 0.979);
             z-index: 1;
         }
 
@@ -291,10 +279,11 @@
             text-align: center;
             color: #fff;
             animation: fadeInUp 0.6s ease-out forwards;
+            padding: 0 20px;
         }
 
         .inner-hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
             font-weight: 700;
             letter-spacing: 1px;
             margin-bottom: 10px;
@@ -302,7 +291,7 @@
 
         .inner-hero p {
             color: var(--yellow);
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             font-weight: 500;
             letter-spacing: 1.5px;
         }
@@ -312,14 +301,12 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* --- LANGUAGE CARDS GRID --- */
         .course-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -330,7 +317,7 @@
         .course-card {
             position: relative;
             background: #fff;
-            padding: 35px 10px 5px 10px;
+            padding: 35px 15px 25px 15px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid #eee;
@@ -419,7 +406,6 @@
             padding: 0;
             margin: 0 0 30px 0;
             flex-grow: 1;
-            /* Pushes the button to the bottom */
         }
 
         .course-features li {
@@ -454,7 +440,6 @@
             box-shadow: 0 5px 15px rgba(32, 201, 151, 0.3);
         }
 
-        /* --- SOLID GREEN CTA SECTION --- */
         .cta-solid-green {
             background-color: var(--teal);
             color: #fff;
@@ -463,7 +448,7 @@
         }
 
         .cta-solid-green h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             margin-bottom: 15px;
             font-weight: 700;
         }
@@ -472,29 +457,13 @@
             font-size: 1.1rem;
             margin-bottom: 30px;
             opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .btn-solid-yellow {
-            background: var(--yellow);
-            color: #000;
-            padding: 14px 40px;
-            border-radius: 4px;
-            display: inline-block;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-solid-yellow:hover {
-            background: #e6a000;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 177, 0, 0.3);
-        }
-
-        /* --- FOOTER --- */
         .footer {
-            background: #f4f6f8 url('images/footer-bg-placeholder.jpg') no-repeat bottom center;
-            background-size: cover;
+            background: #f4f6f8;
             padding: 60px 5% 20px 5%;
             border-top: 1px solid #eee;
             position: relative;
@@ -523,12 +492,20 @@
 
         .social-links a {
             color: var(--dark-navy);
-            font-size: 1.3rem;
+            font-size: 1.1rem;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #507672;
+            background: #507672;
+            color: #fff;
             transform: translateY(-3px);
         }
 
@@ -578,13 +555,13 @@
 
         .contact-item i {
             color: var(--dark-navy);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-top: 3px;
         }
 
         .copyright {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555;
             padding-top: 25px;
             border-top: 1px solid #dcdcdc;
@@ -596,20 +573,19 @@
             color: var(--dark-navy);
         }
 
-        /* Floating Bot */
         .chatbot {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: var(--yellow);
             color: #000;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             cursor: pointer;
@@ -621,18 +597,61 @@
             box-shadow: 0 8px 25px rgba(255, 177, 0, 0.4);
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
+        .btn-teal {
+            background: #507672;
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(80, 118, 114, 0.2);
+        }
+
+        .btn-teal:hover {
+            background: #3a5a57;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(80, 118, 114, 0.4);
+        }
+
+        @media (max-width: 1024px) {
             .course-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .course-grid {
+                grid-template-columns: 1fr;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
-        }
 
-        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background-color: #ffffff;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding-left: 50px;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                transition: right 0.4s ease-in-out;
+                z-index: 99999;
+            }
+
+            .nav-links.active-menu {
+                right: 0;
+            }
+
             .mobile-menu-toggle {
                 display: block;
             }
@@ -641,59 +660,28 @@
                 display: none;
             }
 
-            .course-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #fff;
-                padding: 20px 5%;
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-            }
-
-            .nav-links.active-menu {
-                display: flex;
-            }
-
             .dropdown-menu {
-                position: static;
+                position: relative;
+                top: 0;
+                box-shadow: none;
+                background: #f8f9fa;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                transform: none !important;
                 visibility: visible;
                 opacity: 1;
-                transform: none;
-                box-shadow: none;
-                display: none;
-                padding-left: 20px;
             }
 
-            .has-dropdown:hover .dropdown-menu {
-                display: block;
-            }
-
-            .inner-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .cta-solid-green h2 {
-                font-size: 2rem;
+            .has-dropdown.open .dropdown-menu {
+                max-height: 300px;
             }
         }
-          .btn-teal {
-            background: #507672; color: #fff; padding: 12px 35px; border-radius: 4px; display: inline-block; font-weight: 500; transition: all 0.3s ease; position: relative; z-index: 2; box-shadow: 0 4px 10px rgba(80, 118, 114, 0.2);
-        }
-        .btn-teal:hover { background: #3a5a57; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(80, 118, 114, 0.4); }
-
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
     <header class="navbar">
         <a href="index.html" class="logo">
             <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo">
@@ -711,7 +699,7 @@
                     <li><a href="team.html">Our Team</a></li>
                 </ul>
             </li>
-            <li class="has-dropdown"><a href="services.html">Services <i class="fa-solid fa-chevron-down"></i></a>
+            <li class="has-dropdown"><a href="services.html" class="active">Services <i class="fa-solid fa-chevron-down"></i></a>
                 <ul class="dropdown-menu">
                     <li><a href="services.html">Study Abroad</a></li>
                     <li><a href="travel.html">Travel & tourism</a></li>
@@ -732,7 +720,6 @@
         <a href="contact.html" class="btn-outline-nav">Book An Appointment</a>
     </header>
 
-    <!-- INNER HERO SECTION -->
     <section class="inner-hero" style="background-image: url('images/hero-bg-florence.jpg');">
         <div class="inner-hero-overlay"></div>
         <div class="inner-hero-content">
@@ -741,24 +728,20 @@
         </div>
     </section>
 
-    <!-- PREPARE WITH CONFIDENCE (COURSES GRID) -->
     <section class="section-padding">
         <div class="container text-center">
             <h2 class="sec-title reveal">Prepare with <strong>Confidence</strong></h2>
-            <p class="sec-subtitle reveal delay-1">Our language programs are designed to help you achieve your desired
-                score with expert instruction, practical strategies, and real exam simulations.</p>
+            <p class="sec-subtitle reveal delay-1">Our language programs are designed to help you achieve your desired score with expert instruction, practical strategies, and real exam simulations.</p>
 
             <div class="course-grid reveal delay-2">
 
-                <!-- Card 1: IELTS -->
                 <div class="course-card">
                     <div class="badge-popular">Popular</div>
                     <div class="course-logo">
                         <img src="images/ielts.png" alt="IELTS Logo">
                     </div>
                     <h3>IELTS Preparation</h3>
-                    <p class="course-desc">Achieve your required band score with expert guidance, real exam strategies,
-                        and regular mock tests.</p>
+                    <p class="course-desc">Achieve your required band score with expert guidance, real exam strategies, and regular mock tests.</p>
                     <div class="course-meta">
                         <span><i class="fa-regular fa-clock"></i> Duration: 6-8 Weeks</span>
                         <span><i class="fa-solid fa-bullseye"></i> Target: Band 6.0 - 8.5</span>
@@ -771,15 +754,13 @@
                     <a href="contact.html" class="btn-course">Enroll Now</a>
                 </div>
 
-                <!-- Card 2: TOEFL -->
                 <div class="course-card">
                     <div class="badge-popular">Popular</div>
                     <div class="course-logo">
                         <img src="images/toefl.jfif" alt="TOEFL Logo">
                     </div>
                     <h3>TOEFL Preparation</h3>
-                    <p class="course-desc">Master academic English skills with computer-based practice and proven
-                        test-taking techniques.</p>
+                    <p class="course-desc">Master academic English skills with computer-based practice and proven test-taking techniques.</p>
                     <div class="course-meta">
                         <span><i class="fa-regular fa-clock"></i> Duration: 6 Weeks</span>
                         <span><i class="fa-solid fa-bullseye"></i> Target: 80 - 110+</span>
@@ -792,15 +773,13 @@
                     <a href="contact.html" class="btn-course">Enroll Now</a>
                 </div>
 
-                <!-- Card 3: PTE -->
                 <div class="course-card">
                     <div class="badge-popular">Popular</div>
                     <div class="course-logo">
                         <img src="images/pte.png" alt="PTE Logo">
                     </div>
                     <h3>PTE Academic</h3>
-                    <p class="course-desc">Fast-track your English test success with AI-based scoring practice and
-                        focused training. Ideal for study visas.</p>
+                    <p class="course-desc">Fast-track your English test success with AI-based scoring practice and focused training. Ideal for study visas.</p>
                     <div class="course-meta">
                         <span><i class="fa-regular fa-clock"></i> Duration: 4-6 Weeks</span>
                         <span><i class="fa-solid fa-bullseye"></i> Target: 55 - 80+</span>
@@ -813,15 +792,13 @@
                     <a href="contact.html" class="btn-course">Enroll Now</a>
                 </div>
 
-                <!-- Card 4: Duolingo -->
                 <div class="course-card">
                     <div class="badge-popular">Popular</div>
                     <div class="course-logo">
                         <img src="images/duo.jfif" alt="Duolingo Logo">
                     </div>
                     <h3>Duolingo English Test</h3>
-                    <p class="course-desc">Prepare for the modern English test accepted by top universities worldwide.
-                        Ideal for quick results and affordable.</p>
+                    <p class="course-desc">Prepare for the modern English test accepted by top universities worldwide. Ideal for quick results and affordable.</p>
                     <div class="course-meta">
                         <span><i class="fa-regular fa-clock"></i> Duration: 3-4 Weeks</span>
                         <span><i class="fa-solid fa-bullseye"></i> Target: 95 - 130+</span>
@@ -838,7 +815,6 @@
         </div>
     </section>
 
-    <!-- SOLID GREEN CTA BANNER -->
     <section class="cta-solid-green reveal">
         <div class="container text-center">
             <h2>Ready to Start Your Journey?</h2>
@@ -847,14 +823,13 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid reveal">
                 <div class="footer-about">
                     <a href="index.html" class="logo" style="color: var(--dark-navy);">
                         <img src="images/Educatia-Logo-DqNIJJLv.png" class="logo-img" alt="Educatia Logo"
-                            style="height: 50px; margin-bottom: 10px;">
+                            style="height: 40px; margin-bottom: 10px;">
                     </a>
                     <p>We don't just guide you to study abroad—we help you build a brighter, globally connected future.
                         Trust us to turn your aspirations into achievements.</p>
@@ -906,12 +881,9 @@
         </div>
     </footer>
 
-    <!-- Floating Bot -->
     <div class="chatbot"><i class="fa-solid fa-robot"></i></div>
 
-    <!-- SCRIPTS -->
     <script>
-        // Navbar Scroll Effect
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -921,15 +893,25 @@
             }
         });
 
-        // Mobile Menu Toggle
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
 
         mobileToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active-menu');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
         });
 
-        // Scroll Reveal Animations
+        document.querySelectorAll('.has-dropdown > a').forEach(dropTrigger => {
+            dropTrigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    dropTrigger.parentElement.classList.toggle('open');
+                }
+            });
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             const revealElements = document.querySelectorAll('.reveal');
             const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
